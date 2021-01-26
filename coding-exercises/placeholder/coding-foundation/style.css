@@ -1,15 +1,16 @@
 #inputDiv{
-    padding-left: 50%;
-    padding-top:40%;
+    text-align: center;
+    padding-top:20%;
 }
 #bodyDiv{
     margin:0;
+    width:200px;
+    text-align: center;
    display:flex; 
 
 }
 
 #emojiP{
     width:50px;
-display:flex;
+    display:flex;
 }
-
