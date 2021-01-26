@@ -1,1 +1,15 @@
+#inputDiv{
+    padding-left: 50%;
+    padding-top:40%;
+}
+#bodyDiv{
+    margin:0;
+   display:flex; 
+
+}
+
+#emojiP{
+    width:50px;
+display:flex;
+}
 
