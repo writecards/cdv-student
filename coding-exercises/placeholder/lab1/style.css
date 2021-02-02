@@ -1,0 +1,67 @@
+.bar{
+    background-color: none;
+    margin-left: 30%;
+    top: 30%;
+    height:30px;
+    
+    transition: width 1s, height 3s, background-color 2s;
+    text-align: center;
+    
+    
+    font-size: 24px;
+    color: white;
+    
+
+}
+
+body{
+    background-color: black;
+    font-family: 'Gill Sans';
+    color:white;
+    
+}
+a{
+    color:white;
+}
+#surveyLink{
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    top:8%;
+}
+.barName{
+    margin:auto;
+    text-align: right;
+    animation: fadeIn ease 2s;
+    
+}
+
+
+#title{
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 5%;
+   
+}
+
+
+
+
+@keyframes fadeIn{
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes fadeOut{
+    0%{
+        opacity:1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
