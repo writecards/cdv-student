@@ -6,8 +6,8 @@ Hi! I am Shengli 胜利 and in this repository I will develop my work for the [C
 
 Among other things, I will link to Coding Exercises and Projects:
 
-- [coding exercise (placeholder)](coding-exercises/placeholder)
-- [cool project (placeholder)](projects/placeholder)
+- [coding exercises](coding-exercises/placeholder)
+- [reading responses](reading-responses)
 - ...
 
 
