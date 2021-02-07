@@ -1,0 +1,3 @@
+The two texts mention the "context" of data. In your own words, what do they mean and why do they place such high importance to it? Can you think of a situation where the lack of context leads to unintended/unfavorable consequences?
+
+Both authors offer perspectives on using, or working with (big) data. Imagine they had a conversation with each other, in which points would they agree or disagree? Describe what makes you think that way.
