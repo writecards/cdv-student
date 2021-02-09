@@ -1,6 +1,6 @@
-let svgWidth = 400;
+let svgWidth = 600;
 let svgHeight = 400;
-let timeDayRectSize = 30;
+let timeDayRectSize = 50;
 let timeDayR = 20;
 
 let viz = d3.select("#vizContainer")
@@ -62,6 +62,15 @@ function gotData(newdata){
         .attr("fill",catColor)
 
     ;
+
+    viz.selectAll("line").data(newdata).enter()
+        .append("line")
+            .attr("x1", timeDayX)
+            .attr("y1", timeDayY)
+            .attr("x2",lineX2)
+            .attr("y2", timeDayY)
+            .attr("stroke",catColor)
+            .attr("stroke-width", 3)
 
 
 
@@ -127,10 +136,14 @@ function whatCatDoing(datapoint){
         return "orangered"
     }
 }
-function lineX(datapoint, i){
-    return (svgHeight/2) - timeDayRectSize/2;
 
+function lineX2(){
+   return  timeDayRectSize*2 + i * (20+timeDayRectSize);
 }
+// function lineX(datapoint, i){
+//     return (svgHeight/2) - timeDayRectSize/2;
+
+// }
 
 function randomX(){
    return 100 + (Math.random()*200)+timeDayR*2;
@@ -144,7 +157,7 @@ function randomY(){
 
 function timeDayX(datapoint, i, extra){
     console.log(extra);
-    return timeDayRectSize*1.5 + i * (10+timeDayRectSize);
+    return timeDayRectSize/1.5 + i * (20+timeDayRectSize);
 }
 
 function timeDayY(datapoint, i){
@@ -165,6 +178,7 @@ function catColor(datapoint){
     }
 }
 
+
 function catSize(datapoint){
     if (datapoint.catsPositionInRelationToMe == "far away"){
         return timeDayRectSize/8;
@@ -173,7 +187,7 @@ function catSize(datapoint){
     }
 }
 function catPosX(datapoint, i){
-    return timeDayRectSize*1.8 + (i * timeDayRectSize*1.35);
+    return timeDayRectSize + (i * timeDayRectSize*1.4);
 
 }
 function catPosY(datapoint){
