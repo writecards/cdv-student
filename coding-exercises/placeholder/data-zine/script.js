@@ -38,6 +38,7 @@ function gotData(newdata){
     //style this for what i was doing
       viz.selectAll("rect").data(newdata).enter()
          .append("rect")
+         .attr("id", "timeRect")
             .attr("x",timeDayX)
             .attr("y",timeDayY)
             .attr("width",timeDayRectSize)
@@ -63,27 +64,29 @@ function gotData(newdata){
 
     ;
 
-    viz.selectAll("line").data(newdata).enter()
-        .append("line")
-            .attr("x1", timeDayX)
-            .attr("y1", timeDayY)
-            .attr("x2",lineX2)
-            .attr("y2", timeDayY)
-            .attr("stroke",catColor)
-            .attr("stroke-width", 3)
+    // viz.selectAll("line").data(newdata).enter()
+    //     .append("line")
+    //         .attr("x1", timeDayX)
+    //         .attr("y1", timeDayY)
+    //         .attr("x2",lineX2)
+    //         .attr("y2", timeDayY)
+    //         .attr("stroke",catColor)
+    //         .attr("stroke-width", 3)
+    //         ;
 
 
 
-    //  viz.selectAll("rect").data(newdata).enter()
-    //    //viz.data(newdata).enter()
-       
-    //    .append("rect")
-    //     .attr("x", timeDayX)
-    //     .attr("y",timeDayY)
-    //     .attr('width',20)
-    //     .attr('height',30)   
-    //     .attr('fill','black')
-    //     ;
+     viz.data(newdata).enter()
+       //viz.data(newdata).enter()
+
+       .append("rect")
+       .attr("id","rect2")
+        .attr("x", 100)
+        .attr("y",timeDayY)
+        .attr('width',20)
+        .attr('height',30)   
+        .attr('fill','black')
+        ;
   
 
     // // viz.selectAll("g.line").data(newdata).enter()
