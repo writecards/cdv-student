@@ -73,7 +73,7 @@
     },
     {
         "timestamp": "2021-02-10T01:02:24.299Z",
-        "date": "0021-02-09T15:54:17.000Z",
+        "date": "2021-02-09T15:54:17.000Z",
         "whatIWasDoing": "going out",
         "timeOfDay": "morning",
         "whatTheCatWasDoing": "running",
@@ -82,7 +82,7 @@
     },
     {
         "timestamp": "2021-02-10T10:48:48.718Z",
-        "date": "0021-02-09T15:54:17.000Z",
+        "date": "2021-02-09T15:54:17.000Z",
         "whatIWasDoing": "going out",
         "timeOfDay": "morning",
         "whatTheCatWasDoing": "running",
@@ -277,5 +277,32 @@
         "whatTheCatWasDoing": "sitting",
         "catsPositionInRelationToMe": "below me",
         "catColor": "black"
+    },
+    {
+        "timestamp": "2021-02-21T12:39:46.673Z",
+        "date": "2021-02-20T16:00:00.000Z",
+        "whatIWasDoing": "going out",
+        "timeOfDay": "evening",
+        "whatTheCatWasDoing": "stalking",
+        "catsPositionInRelationToMe": "above me",
+        "catColor": "white"
+    },
+    {
+        "timestamp": "2021-02-21T12:40:04.051Z",
+        "date": "2021-02-20T16:00:00.000Z",
+        "whatIWasDoing": "going out",
+        "timeOfDay": "evening",
+        "whatTheCatWasDoing": "stalking",
+        "catsPositionInRelationToMe": "below me",
+        "catColor": "orange"
+    },
+    {
+        "timestamp": "2021-02-21T12:40:29.838Z",
+        "date": "2021-02-20T16:00:00.000Z",
+        "whatIWasDoing": "going out",
+        "timeOfDay": "evening",
+        "whatTheCatWasDoing": "stalking",
+        "catsPositionInRelationToMe": "below me",
+        "catColor": "orange"
     }
 ]

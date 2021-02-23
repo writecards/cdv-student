@@ -1,70 +1,56 @@
 // let svgWidth = window.innerWidth;
 // let svgHeight = window.innerHeight;
-let svgWidth = 600;
-let svgHeight = 600;
-let timeDaySize = 35;
+let svgWidth = 1200;
+let svgHeight = 800;
+let timeDaySize = 30;
 
 let viz = d3.select("#viz-container")
  .append("svg")
     .attr("width",svgWidth)
     .attr("height",svgHeight)
     .attr("id","viz")
-    .style("background-color","midnightblue")
+    .style("background-color","darkslateblue")
     ;
-let grid = d3.select("#vizcontainer")
+
 
 let catData = d3.json("data.json").then(gotData);
 let cellRows = catData.length;
 
-//let cellCols = catData[0].length;
 
 function gotData(newData){
-    //console.log(newData.length)
-    // viz.selectAll(".timeOfDay").data(newData).enter()
-    //     .append("rect")
-    //     .attr("x",randomX)
-    //     .attr("y",randomY)
-    //     .attr("width",timeDaySize)
-    //     .attr("height",timeDaySize)
-    //     .attr("fill","white")
-    //     .attr("class","timeOfDay")
-    //     ;
-    // viz.selectAll(".whatIwasDoing").data(newData).enter()
-    //     .append("circle")
-    //     .attr("cx",randomX)
-    //     .attr("cy",randomY)
-    //     .attr("r",30)
-    //     .attr("class","whatIwasDoing")
-    //     .attr("fill","lightblue")
-        //;
+   
 
     let dataCells = viz.selectAll(".dataCell").data(newData).enter()
-    .append("g")
-    .attr("class", "dataCell")
-    .attr("transform", cellsTranslate)
+        .append("g")
+        .attr("class", "dataCell")
+        .attr("transform", cellsTranslate)
     ;
 
+    // dataCells.append("circle")
+    //     .attr("cx",0)
+    //     .attr("cy",0)
+    //     //.attr("width",timeDaySize)
+    //     .attr("r",timeDaySize)
+    //     .attr("fill","none")
+    //     .attr("stroke",timeDayFill)
+    //     .attr("class","timeOfDay")
+    //     .attr("stroke-width",1.5)
+    //     ;
 
-    dataCells.append("circle")
-        .attr("cx",0)
-        .attr("cy",0)
-        //.attr("width",timeDaySize)
-        .attr("r",timeDaySize)
-        .attr("fill","none")
-        .attr("stroke",timeDayFill)
-        .attr("class","timeOfDay")
-        ;
 
      dataCells.append("circle")
         .attr("cx",catPosX)
         .attr("cy",catPosY)
         .attr("r",timeDaySize/1.5)
         .attr("class","catCircle")
-        .attr("fill",catColor)
+        .attr("fill","none")
+        .attr("stroke",catColor)
         //.style("fill","url(#myGradient)")
         .attr("opacity","1")
         
         ;
+        
+        
 
     dataCells.append("circle")
         .attr("cx",0)
@@ -73,8 +59,21 @@ function gotData(newData){
         .attr("class","whatIwasDoing")
         .attr("fill","none")
         .attr("stroke",whatIwasDoing)
-        .attr("stroke-width",1)
+        .attr("stroke-width",1.5)
         ;
+
+        dataCells.append("circle")
+        .attr("class", "whatCatDoing")
+        .attr("cx",0)
+        .attr("cy",timeDaySize/5)
+        .attr("r",timeDaySize/1.5)
+        .attr("fill","none")
+        .attr("stroke",timeDayFill)
+        .attr("stroke-width",2)
+        .attr("transform",whatCatDoingRotate)
+
+        ;
+ 
 
     dataCells.append("text")
         .text(dateText)
@@ -84,146 +83,101 @@ function gotData(newData){
         .attr("fill","beige")
         ;
 
-    // dataCells.append(whatCatDoing)
-    //     .attr("class","actionFeatures")
+    dataCells.append("path")
+        .attr("d",d3.arc()
+            .outerRadius(timeDaySize)
+            .innerRadius(timeDaySize-3)
+            .startAngle(catPosRotateStart)
+            .endAngle(catPosRotateEnd)
+    
+        )
+        .attr("fill","none")
+        .attr("stroke",timeDayFill)
+       
+    ;
+    
+    
+//lines for chart
+let axisLineY = viz.append("line")
+    .attr("x1",100+svgWidth/2)
+    .attr("y1",svgHeight-100)
+    .attr("x2",100+svgWidth/2)
+    .attr("y2",100)
+    .attr("stroke","white")
+    ;
 
-        
+let axisLineX = viz.append("line")
+    .attr("x1",100+svgWidth/2)
+    .attr("y1",svgHeight-100)
+    .attr("x2",500+svgWidth/2)
+    .attr("y2",svgHeight-100)
+    .attr("stroke","white")
+    ;
 
-        ;
+ let graphCells = viz.selectAll(".graphCell").data(newData).enter()
+    .append("g")
+    .attr("class", "graphCell")
+    .attr("transform", graphCellsTranslate)
+;
         
+graphCells.append("circle")
+    .attr("cx",0)
+    .attr("cy",0)
+    .attr("r",10)
+    .attr("fill",catColor)
+    .attr("class","graphCircle1");
+
+
 }
+
+viz.append("circle")
+    .attr("class","keyCircle")
+    .attr("cx",300)
+    .attr("cy",650)
+    .attr("r",100)
+    .attr("fill","none")
+    .attr("stroke","white")
+    .attr("stroke-width",5)
+    ;
+viz.append("text")
+    .attr("x",300)
+    .attr("y",650)
+    .text("key")
+
+
+
+///arc function, help from stack overflow d3 reference
+
+let arcGenerator = d3.arc()
+    .outerRadius(timeDayFill)
+    .innerRadius(timeDayFill/1.5)
+    .startAngle(-Math.PI / 2)
+    .endAngle(Math.PI / 2);
+    ;
+
 
 //positioning functions
 
 function cellsTranslate(d,i){
-    // i==0 (first datapoint): should go to row0column0
-    // i==1: should go to row0column1
-    // i==2: should go to row0column2
-    // i==3: should go to row0column3
-    // i==4: should go to row0column4
-    // i==5: :rotating_light: now we need to jump to the next row* and back in the columns… row1column0
-    // i==6: should go to row1column1
-    // …
-    // *how can we detect this? when i/5 column number  is bigger than 1
-
-    //let x, y;
-   // console.log("i=",i, "div= ",i / rows.length);
+   
     let cellSize = timeDaySize;
 
     let rowsLength = 6;
     let colsLength = 6;
-    let rows = Math.floor(i/rowsLength);
-    let cols = i % colsLength;
-    console.log("i is", i)
-    console.log("row is", rows)
-    console.log("col is", cols)
+    let rows = Math.floor(i/rowsLength); // divide to place into rows, floor to get rid of decimals
+    let cols = i % colsLength; // using remainder to detect when to switch to next column. 
+                                 // use remainder instead of division to loop through 0-5
+   // console.log("i is", i)
+    // console.log("row is", rows)
+    // console.log("col is", cols)
 
     
-    console.log("--")
+   // console.log("--")
 
-    let x = 2.5 * cellSize * rows;
-    let y = 2.5 * cellSize * cols;
+    let x = cellSize*1.6  + 2.7 * cellSize * rows;
+    let y = cellSize*1.6 + 2.7 * cellSize * cols;
     
-    // let rows = [1,2,3,4,5,6];
-    // let cols = [1,2,3,4,5,6];
-    
-    // if(i % cols.length == 0){
-    //     x = 2.5* cellSize * rows[0];
-    // }
-    // if(i % cols.length == 1){
-    //     x = 2.5 * cellSize * rows[1];
-    // }
-    // if(i % cols.length == 2){
-    //     x = 2.5 * cellSize * rows[2];
-    // }
-    // if(i % cols.length ==3){
-    //     x = 2.5 * cellSize * rows[3];
-    // }
-    // if(i % cols.length == 4){
-    //     x = 2.5 * cellSize * rows[4];
-    // }
-    // if(i % cols.length == 5){
-    //     x = 2.5 * cellSize * rows[5];
-    // }
-
-    // if((i / cols.length) <= 1){
-    //     y = 2.5 * cellSize * cols[0];
-    // }
-    // if((i / cols.length) > 1 && (i / cols.length) < 2){
-    //     y = 2.5 * cellSize * cols[1];
-    // }
-    // if((i / cols.length) > 2 && (i / cols.length) < 3){
-    //     y = 2.5 * cellSize * cols[2];
-    // } 
-    // if((i / cols.length) > 3 && (i / cols.length) < 4){
-    //     y = 2.5 * cellSize * cols[3];
-    // }
-    // if((i / cols.length) > 4 && (i / cols.length) < 5){
-    //     y = 2.5 * cellSize * cols[4];
-    // }
-    // if((i / cols.length) > 5 && (i / cols.length) < 6){
-    //     y = 2.5 * cellSize * cols[5];
-    // }
-
-  
-
-
-
-    // if(i == 0){
-    //     x = 2 * timeDaySize * cols[0];
-    //     y = timeDaySize * rows[0];
-    // }
-    // if(i == 1){
-    //     x = 2 * timeDaySize  * cols[1];
-    //     y = timeDaySize * rows[0];
-    // }
-    // if(i == 3){
-    //     x = 2 * timeDaySize  * cols[2];
-    //     y = timeDaySize * rows[0];
-    // }
-    // if(i == 4){
-    //     x = 2 * timeDaySize  * cols[3];
-    //     y = timeDaySize * rows[0];
-    // } 
-    // if(i == 5){
-    //     x = 2 * timeDaySize  * cols[4];
-    //     y = timeDaySize * rows[0];
-    // }
-    // if(i == 6){
-    //     x = 2 * timeDaySize  * cols[5];
-    //     y = timeDaySize * rows[0];
-    // }
-    // if(i == 7){
-    //     x = 2 * timeDaySize  * cols[0];
-    //     y = 2* timeDaySize * rows[1];
-    // }
-
- 
-        // for(let cols = 0; cols < 5; cols++){
-        //  if(i == 0){
-            
-        //  }
- 
-        // }
-
-
-//    for(let rows = 0; rows < 5; rows++){
-//        for(let cols = 0; cols < 5; cols++){
-//         if(i == 0){
-           
-//         }
-
-//        }
-//    }
-    
-
-    
-
-
-
-
-    // let x = 10 + (i * 70);
-    // let y = 10 + (i * 70);
+   
    return "translate(" + x + "," + y + ")";
 }
 
@@ -236,26 +190,21 @@ function randomY(){
     return Math.random()*svgHeight;
 }
 
-function groupPosX(){
 
+
+
+//graph translate functions
+
+function graphCellsTranslate(d,i){
+
+    let x = 120+svgWidth/2+ (i * 12);
+    let y = 200+Math.random()*500;
+    return "translate(" + x + "," + y + ")";
 }
-
-function groupPoxY(){
-
-}
-
-/// drawing shit for what the cat was doing
-viz.append("line")
-    .attr("id","catRunning")
-    .attr("x1", 100)
-        .attr("y1", 100)
-        .attr("x2", 40)
-        .attr("y2", 100)
-        .attr("stroke","white")
-    ;
-
 
 ////style functions
+
+
 
 function timeDayFill(d){
     let timeDayVar = d.timeOfDay;
@@ -311,7 +260,7 @@ let catColorGradient = viz.append("linearGradient")
 catColorGradient.append("stop")
     .attr("offset","0%")
     .style("stop-color","red")
-    .style("stop-opacity",0.7)
+    .style("stop-opacity",1)
     ;
 // catColorGradient.append("stop")
 //     .attr("offset","25%")
@@ -329,14 +278,13 @@ catColorGradient.append("stop")
     .style("stop-opacity",0.5)
 ;
 
-    
-
 function catPosX(d){
+    let shiftVal = 10;
     let catPosition = d.catsPositionInRelationToMe;
     if( catPosition == "below me"){
         return 0;
     }else if(catPosition == "eye level"){
-        return -7;
+        return -shiftVal;
     }else if(catPosition == "above me"){
         return 0;
     }else if(catPosition == "through zoom"){
@@ -344,15 +292,16 @@ function catPosX(d){
     }
 }
 function catPosY(d){
+    let shiftVal = 10;
     let catPosition = d.catsPositionInRelationToMe;
     if( catPosition == "below me"){
-        return 7;
+        return shiftVal;
     }else if(catPosition == "eye level"){
         return 0
     }else if(catPosition == "above me"){
-        return -7;
+        return -shiftVal;
     }else if(catPosition == "through zoom"){
-        return -10;
+        return -shiftVal;
     }
 }
 
@@ -364,7 +313,8 @@ function dateText(d){
 function whatCatDoing(d){
     let wydCat = d.whatTheCatWasDoing;
     if (wydCat == "running"){
-        return "url(#catRunning)"
+        //return "url(#catRunning)"
+        return 20;
     }else if (wydCat == "walking"){
         return 
     }else if (wydCat == "sitting"){
@@ -377,4 +327,48 @@ function whatCatDoing(d){
     }
 
 
+}
+
+function whatCatDoingRotate(d){
+    let wydCat = d.whatTheCatWasDoing;
+    if (wydCat == "running"){
+        //return "url(#catRunning)"
+        return "rotate(30)";
+    }else if (wydCat == "walking"){
+        return "rotate(45)";
+    }else if (wydCat == "sitting"){
+        return "rotate(60)";
+    }else if (wydCat == "eating"){
+        return "rotate(135)";
+    }
+    else if (wydCat == "sleeping"){
+        return "rotate(0)";
+    }
+
+
+}
+
+function catPosRotateStart(d){
+    let catPosition = d.catsPositionInRelationToMe;
+    if( catPosition == "below me"){
+        return 0;
+    }else if(catPosition == "eye level"){
+        return Math.PI
+    }else if(catPosition == "above me"){
+        return Math.PI/3;
+    }else if(catPosition == "through zoom"){
+        return Math.PI;
+    }
+}
+function catPosRotateEnd(d){
+    let catPosition = d.catsPositionInRelationToMe;
+    if( catPosition == "below me"){
+        return Math.PI/3;
+    }else if(catPosition == "eye level"){
+        return Math.PI/2
+    }else if(catPosition == "above me"){
+        return 0;
+    }else if(catPosition == "through zoom"){
+        return -Math.PI;
+    }
 }
