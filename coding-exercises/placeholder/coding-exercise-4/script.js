@@ -9,7 +9,7 @@ let viz = d3.select("#viz-container")
     .attr("width",svgWidth)
     .attr("height",svgHeight)
     .attr("id","viz")
-    .style("background-color","darkslateblue")
+    .style("background-color","midnightblue")
     ;
 
 
@@ -37,10 +37,39 @@ function gotData(newData){
     //     .attr("stroke-width",1.5)
     //     ;
 
+    dataCells.append("path")
+        .attr("class","catEarLeft")
+        .attr("d",d3.symbol()
+                .type(d3.symbolTriangle)
+                .size(timeDaySize*2)
+                
+        )
+        .attr("stroke",timeDayFill)
+        .attr("fill","none")
+       
+        .attr("transform",earTranslateLeft)
+        
+    ;
+
+    dataCells.append("path")
+    .attr("class","catEarRight")
+    .attr("d",d3.symbol()
+            .type(d3.symbolTriangle)
+            .size(timeDaySize*2)
+            
+    )
+    .attr("stroke",timeDayFill)
+        .attr("fill","none")
+    .attr("transform",earTranslateRight)
+  //  .attr("x",-30)
+    
+;
 
      dataCells.append("circle")
-        .attr("cx",catPosX)
-        .attr("cy",catPosY)
+        // .attr("cx",catPosX)
+        // .attr("cy",catPosY)
+        .attr("cx",0)
+        .attr("cy",0)
         .attr("r",timeDaySize/1.5)
         .attr("class","catCircle")
         .attr("fill","none")
@@ -54,8 +83,8 @@ function gotData(newData){
 
     dataCells.append("circle")
         .attr("cx",0)
-        .attr("cy",0)
-        .attr("r",timeDaySize/1.5)
+        .attr("cy",-20)
+        .attr("r",timeDaySize/2)
         .attr("class","whatIwasDoing")
         .attr("fill","none")
         .attr("stroke",whatIwasDoing)
@@ -65,7 +94,9 @@ function gotData(newData){
         dataCells.append("circle")
         .attr("class", "whatCatDoing")
         .attr("cx",0)
-        .attr("cy",timeDaySize/5)
+       // .attr("cy",timeDaySize/5)
+       .attr("cy",-5)
+       
         .attr("r",timeDaySize/1.5)
         .attr("fill","none")
         .attr("stroke",timeDayFill)
@@ -93,8 +124,11 @@ function gotData(newData){
         )
         .attr("fill","none")
         .attr("stroke",timeDayFill)
+        .attr("transform",catTailTrainslate)
        
     ;
+
+
     
     
 //lines for chart
@@ -129,20 +163,24 @@ graphCells.append("circle")
 
 
 }
+//KEY
 
-viz.append("circle")
-    .attr("class","keyCircle")
-    .attr("cx",300)
-    .attr("cy",650)
-    .attr("r",100)
-    .attr("fill","none")
-    .attr("stroke","white")
-    .attr("stroke-width",5)
-    ;
-viz.append("text")
-    .attr("x",300)
-    .attr("y",650)
-    .text("key")
+// viz.append("circle")
+//     .attr("class","keyCircle")
+//     .attr("cx",300)
+//     .attr("cy",750)
+//     .attr("r",40)
+//     .attr("fill","none")
+//     .attr("stroke","white")
+//     .attr("stroke-width",5)
+//     ;
+// viz.append("text")
+//     .attr("x",180)
+//     .attr("y",600)
+//     .text("key")
+//     .attr("fill","beige")
+//     .attr("font-family","Roboto")
+
 
 
 
@@ -175,7 +213,7 @@ function cellsTranslate(d,i){
    // console.log("--")
 
     let x = cellSize*1.6  + 2.7 * cellSize * rows;
-    let y = cellSize*1.6 + 2.7 * cellSize * cols;
+    let y = 80+cellSize*1.6 + 3.5 * cellSize * cols;
     
    
    return "translate(" + x + "," + y + ")";
@@ -191,6 +229,18 @@ function randomY(){
 }
 
 
+//cat ears
+
+function earTranslateLeft(){
+    let x = (-timeDaySize/2)+6
+    let y = -timeDaySize-5
+    return  "translate(" + x + "," + y + ")";
+}
+function earTranslateRight(){
+    let x = -6+timeDaySize/2
+    let y = -timeDaySize-5
+    return  "translate(" + x + "," + y + ")";
+}
 
 
 //graph translate functions
@@ -348,14 +398,20 @@ function whatCatDoingRotate(d){
 
 }
 
+function catTailTrainslate(d){
+    let x = 5;
+    let y = -10;
+    return  "translate(" + x + "," + y + ")";
+}
+
 function catPosRotateStart(d){
     let catPosition = d.catsPositionInRelationToMe;
     if( catPosition == "below me"){
-        return 0;
+       // return 0;
     }else if(catPosition == "eye level"){
         return Math.PI
     }else if(catPosition == "above me"){
-        return Math.PI/3;
+       // return Math.PI/3;
     }else if(catPosition == "through zoom"){
         return Math.PI;
     }
@@ -363,11 +419,11 @@ function catPosRotateStart(d){
 function catPosRotateEnd(d){
     let catPosition = d.catsPositionInRelationToMe;
     if( catPosition == "below me"){
-        return Math.PI/3;
+       // return Math.PI/3;
     }else if(catPosition == "eye level"){
         return Math.PI/2
     }else if(catPosition == "above me"){
-        return 0;
+       // return 0;
     }else if(catPosition == "through zoom"){
         return -Math.PI;
     }
