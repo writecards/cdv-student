@@ -15,19 +15,19 @@ d3.json("data.json").then(gotData);
 function gotData(incomingData){
 
   
-    viz.selectAll(".tailArcs").data(incomingData).enter()
-        .append("path")
-         .attr("d", d3.arc()
-            .outerRadius(30)
-            .innerRadius(20)
-            .startAngle(0)
-            .endAngle(Math.PI)
-            )
-        .attr("transform","rotate(80)")
-        .attr("transform",randomPos)   
-        .attr("fill","white")
-        .attr("opacity",0.4)
-    ;
+    // viz.selectAll(".tailArcs").data(incomingData).enter()
+    //     .append("path")
+    //      .attr("d", d3.arc()
+    //         .outerRadius(30)
+    //         .innerRadius(20)
+    //         .startAngle(0)
+    //         .endAngle(Math.PI)
+    //         )
+    //     .attr("transform","rotate(80)")
+    //     .attr("transform",randomPos)   
+    //     .attr("fill","white")
+    //     .attr("opacity",0.4)
+    // ;
 
   
 

@@ -1,13 +1,15 @@
 let svgWidth = 2400;
 let svgHeight = 800;
-let timeDaySize = 30;
+let timeDaySize = 45;
+
+let packCircleSize = 10;
 
 let viz = d3.select("#container")
  .append("svg")
     .attr("width",svgWidth)
     .attr("height",svgHeight)
     .attr("id","viz")
-    .style("background-color","midnightblue")
+    .style("background-color","darkslateblue")
     ;
 
 
@@ -16,12 +18,13 @@ let cellRows = catData.length;
 
 
 function gotData(newData){
-   
+  
 
     let dataCells = viz.selectAll(".dataCell").data(newData).enter()
         .append("g")
         .attr("class", "dataCell")
         .attr("transform", cellsTranslate)
+        .attr("stroke-width",3)
     ;
 
     // dataCells.append("circle")
@@ -72,36 +75,33 @@ let catHeadGroup = viz.selectAll(".catHead").data(newData).enter()
         .attr("fill","none")
         .attr("stroke",whatIwasDoing)
         .attr("stroke-width",1.5)
-        .attr("transform",whatCatDoingRotate)
+        .attr("transform",whatCatDoingHeadRotate)
         ;
-       
-    catHeadGroup.append("path")
-        .attr("class","catEarLeft")
-         .attr("d",d3.symbol()
-                .type(d3.symbolTriangle)
-                .size(timeDaySize*2)
+       //drawing cat eats
+    // catHeadGroup.append("path")
+    //     .attr("class","catEarLeft")
+    //      .attr("d",d3.symbol()
+    //             .type(d3.symbolTriangle)
+    //             .size(timeDaySize*2)
                 
-        )
-                .attr("stroke",timeDayFill)
-                .attr("fill","none")
-                .attr("transform",earTranslateLeft)
+    //     )
+    //             .attr("stroke",timeDayFill)
+    //             .attr("fill","none")
+    //             .attr("transform",earTranslateLeft)
         
-             ;
+    //          ;
 
-    catHeadGroup.append("path")
-     .attr("class","catEarRight")
-        .attr("d",d3.symbol()
-            .type(d3.symbolTriangle)
-            .size(timeDaySize*2)
-    )
-             .attr("stroke",timeDayFill)
-             .attr("fill","none")
-             .attr("transform",earTranslateRight)
+    // catHeadGroup.append("path")
+    //  .attr("class","catEarRight")
+    //     .attr("d",d3.symbol()
+    //         .type(d3.symbolTriangle)
+    //         .size(timeDaySize*2)
+    // )
+    //          .attr("stroke",timeDayFill)
+    //          .attr("fill","none")
+    //          .attr("transform",earTranslateRight)
     
-             ;
-
-
-
+    //          ;
 
 
         dataCells.append("circle")
@@ -114,68 +114,46 @@ let catHeadGroup = viz.selectAll(".catHead").data(newData).enter()
         .attr("fill","none")
         .attr("stroke",timeDayFill)
         .attr("stroke-width",2)
-        .attr("transform",whatCatDoingRotate)
+        .attr("transform",whatCatDoingTailRotate)
 
         ;
  
 
     dataCells.append("text")
         .text(dateText)
-        .attr("x",3-timeDaySize/2)
-        .attr("y",13+timeDaySize)
+        .attr("x",(-timeDaySize/2)+10)
+        .attr("y",20+timeDaySize)
         .attr("font-family","Roboto")
         .attr("fill","beige")
         ;
 ///////////// tail arc ////////
-    // dataCells.append("path")
-    //     .attr("d",d3.arc()
-    //         .outerRadius(timeDaySize)
-    //         .innerRadius(timeDaySize-3)
-    //         .startAngle(catPosRotateStart)
-    //         .endAngle(catPosRotateEnd)
-    
-    //     )
-    //     .attr("fill","none")
-    //     .attr("stroke",timeDayFill)
-    //     .attr("transform",catTailTrainslate)
+
+    dataCells.append("path")
+        .attr("d",d3.arc()
+            .outerRadius(timeDaySize)
+            .innerRadius(timeDaySize-3)
+            .startAngle(catPosRotateStart)
+            .endAngle(catPosRotateEnd)
+        )
+        .attr("fill","none")
+        .attr("stroke",timeDayFill)
+        .attr("transform",whatCatDoingTailRotate)
        
-    // ;
+    ;
 
 
     
-    
-//lines for chart
-let axisLineY = viz.append("line")
-    .attr("x1",100+svgWidth/2)
-    .attr("y1",svgHeight-100)
-    .attr("x2",100+svgWidth/2)
-    .attr("y2",100)
-    .attr("stroke","white")
-    ;
-
-let axisLineX = viz.append("line")
-    .attr("x1",100+svgWidth/2)
-    .attr("y1",svgHeight-100)
-    .attr("x2",500+svgWidth/2)
-    .attr("y2",svgHeight-100)
-    .attr("stroke","white")
-    ;
-
- let graphCells = viz.selectAll(".graphCell").data(newData).enter()
-    .append("g")
-    .attr("class", "graphCell")
-    .attr("transform", graphCellsTranslate)
-;
-        
-graphCells.append("circle")
-    .attr("cx",0)
-    .attr("cy",0)
-    .attr("r",10)
-    .attr("fill",catColor)
-    .attr("class","graphCircle1");
-
-
+   
+          
+  
+   
 }
+
+
+
+
+
+//////
 //KEY
 
 // viz.append("circle")
@@ -199,12 +177,6 @@ graphCells.append("circle")
 
 ///arc function, help from stack overflow d3 reference
 
-let arcGenerator = d3.arc()
-    .outerRadius(timeDayFill)
-    .innerRadius(timeDayFill/1.5)
-    .startAngle(-Math.PI / 2)
-    .endAngle(Math.PI / 2);
-    ;
 
 
 //positioning functions
@@ -213,15 +185,15 @@ function cellsTranslate(d,i){
    
     let cellSize = timeDaySize;
 
-    let rowsLength = 6;
-    let colsLength = 6;
+    let rowsLength = 5;
+    let colsLength = 5;
     let rows = Math.floor(i/rowsLength); // divide to place into rows, floor to get rid of decimals
     let cols = i % colsLength; // using remainder to detect when to switch to next column. 
                                  // use remainder instead of division to loop through 0-5
    
 
-    let x = 300+cellSize*1.6  + 3 * cellSize * rows;
-    let y = 50+cellSize*1.6 + 4 * cellSize * cols;
+    let x =  200+ cellSize * rows * 2.5;
+    let y =  100+ cellSize * cols * 3;
     
    
    return "translate(" + x + "," + y + ")";
@@ -237,7 +209,7 @@ function randomY(){
 }
 
 
-//cat ears
+//cat ears translate
 
 function earTranslateLeft(){
     let x = (-timeDaySize/2)+5
@@ -251,14 +223,7 @@ function earTranslateRight(){
 }
 
 
-//graph translate functions
 
-function graphCellsTranslate(d,i){
-
-    let x = 120+svgWidth/2+ (i * 12);
-    let y = 200+Math.random()*500;
-    return "translate(" + x + "," + y + ")";
-}
 
 ////style functions
 
@@ -294,6 +259,8 @@ function whatIwasDoing(d){
 
 function catColor(d){
     let catColor = d.catColor;
+    //console.log(catColor)
+    
     if(catColor == "black"){
         return "black";
     }else if(catColor == "white"){
@@ -306,7 +273,17 @@ function catColor(d){
     }else if(catColor == "orange"){
         return "orange";
     }
+
+   
+    
+
+   
 }
+
+
+
+
+
 
 let catColorGradient = viz.append("linearGradient")
     .attr("id","myGradient")
@@ -387,56 +364,71 @@ function whatCatDoing(d){
 
 }
 
-function whatCatDoingRotate(d){
+function whatCatDoingHeadRotate(d){
     let wydCat = d.whatTheCatWasDoing;
     if (wydCat == "running"){
-        let randomLeftRight = Math.random();
-        if(Math.random()>0.5){ // is this ethical
-            return "rotate(60)";
-        }else{
-            return "rotate(-60)"
-        }
-    }else if (wydCat == "walking"){
         return "rotate(90)";
+    }else if (wydCat == "walking"){
+        return "rotate(60)";
     }else if (wydCat == "sitting"){
         return "rotate(0)";
     }else if (wydCat == "eating"){
-        return "rotate(135)";
-    }
-    else if (wydCat == "sleeping"){
         return "rotate(180)";
     }
+    else if (wydCat == "stalking"){
+        return "rotate(225)";
+    }
+
+}
+
+function whatCatDoingTailRotate(d){
+    let wydCat = d.whatTheCatWasDoing;
+    if (wydCat == "running"){
+        return "rotate(270)";
+    }else if (wydCat == "walking"){
+        return "rotate(225)";
+    }else if (wydCat == "sitting"){
+        return "rotate(180)";
+    }else if (wydCat == "eating"){
+        return "rotate(0)";
+    }
+    else if (wydCat == "stalking"){
+       return "rotate(0)";
+    }
 
 
 }
 
-function catTailTrainslate(d){
-    let x = 5;
-    let y = -10;
-    return  "translate(" + x + "," + y + ")";
-}
+
+
+
+
 
 function catPosRotateStart(d){
     let catPosition = d.catsPositionInRelationToMe;
-    if( catPosition == "below me"){
-       // return 0;
-    }else if(catPosition == "eye level"){
-        return Math.PI
-    }else if(catPosition == "above me"){
-       // return Math.PI/3;
-    }else if(catPosition == "through zoom"){
-        return Math.PI;
-    }
+    // if( catPosition == "below me"){
+    //    // return 0;
+    // }else if(catPosition == "eye level"){
+    //     return Math.PI
+    // }else if(catPosition == "above me"){
+    //    // return Math.PI/3;
+    // }else if(catPosition == "through zoom"){
+    //     return Math.PI;
+    // }
+    return 0;
 }
 function catPosRotateEnd(d){
     let catPosition = d.catsPositionInRelationToMe;
-    if( catPosition == "below me"){
-       // return Math.PI/3;
-    }else if(catPosition == "eye level"){
-        return Math.PI/2
-    }else if(catPosition == "above me"){
-       // return 0;
-    }else if(catPosition == "through zoom"){
-        return -Math.PI;
-    }
+    // if( catPosition == "below me"){
+    //    // return Math.PI/3;
+    // }else if(catPosition == "eye level"){
+    //     return Math.PI/2
+    // }else if(catPosition == "above me"){
+    //    // return 0;
+    // }else if(catPosition == "through zoom"){
+    //     return -Math.PI;
+    // }
+    return Math.PI/2;
 }
+
+
