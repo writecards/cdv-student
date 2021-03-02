@@ -16,6 +16,37 @@ let viz = d3.select("#container")
 let catData = d3.json("data.json").then(gotData);
 let cellRows = catData.length;
 
+viz.append("text")
+.attr("class","textAline1")
+.attr("x",310)
+.attr("y",110)
+.text("there are approximately 30 million stray cats living among us in Shanghai")
+.style("font-size",18)
+.style("width","80")
+.attr("font-family","Roboto")
+.attr("fill","beige")
+;
+
+viz.append("text")
+.attr("class","textAline2")
+.attr("x",400)
+.attr("y",130)
+.text("here are some I met over the past couple of weeks")
+.style("font-size",18)
+.style("width","80")
+.attr("font-family","Roboto")
+.attr("fill","beige")
+;
+
+viz.append("rect")
+    .attr("class","keyplacerbox")
+    .attr("x",400)
+    .attr("y",200)
+    .attr("width",400)
+    .attr("height",400)
+    .attr("fill","none")
+    .attr("stroke","beige")
+
 
 function gotData(newData){
   
@@ -192,7 +223,7 @@ function cellsTranslate(d,i){
                                  // use remainder instead of division to loop through 0-5
    
 
-    let x =  200+ cellSize * rows * 2.5;
+    let x =  1450+ cellSize * rows * 2.5;
     let y =  100+ cellSize * cols * 3;
     
    

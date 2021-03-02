@@ -7,7 +7,7 @@ let viz = d3.select("#container")
     .attr("id","viz")
     .attr("width",w)
     .attr("height",h)
-    .style("background-color","black")
+    .style("background-color","darkslateblue")
     ;
 
 d3.json("data.json").then(gotData);
