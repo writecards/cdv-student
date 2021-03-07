@@ -9,7 +9,7 @@ let viz = d3.select("#container")
     .attr("width",svgWidth)
     .attr("height",svgHeight)
     .attr("id","viz")
-    .style("background-color","darkslateblue")
+    .style("background-color","rgb(231, 225, 216)")
     ;
 
 
@@ -24,21 +24,13 @@ function gotData(newData){
 
     
     
-//lines for chart
-// let axisLineY1 = viz.append("line")
-//     .attr("x1",100+svgWidth/2)
-//     .attr("y1",svgHeight-100)
-//     .attr("x2",100+svgWidth/2)
-//     .attr("y2",100)
-//     .attr("stroke","white")
-//     ;
 
 let axisLineX1 = viz.append("line")
     .attr("x1",180)
     .attr("y1",510)
     .attr("x2",520)
     .attr("y2",510)
-    .attr("stroke","beige")
+    .attr("stroke","black")
     ;
 
  let axisLineX2 = viz.append("line")
@@ -46,7 +38,7 @@ let axisLineX1 = viz.append("line")
     .attr("y1",510)
     .attr("x2",1010)
     .attr("y2",510)
-    .attr("stroke","beige")
+    .attr("stroke","black")
     ;
 
 
@@ -84,8 +76,10 @@ let timeScale = d3.scaleTime().domain([ firstDay, lastDay ]).range( [200, 500]);
 
 function graphCellsTranslate(d,i){
     let cols = i % 20;
+   // let cols = i % 15;
 
     let x = timeScale(d.date);
+  //  let y = -timeScale(d.date);
     let y = 300+cols*10;
     return "translate(" + x + "," + y + ")";
 }
@@ -99,14 +93,14 @@ graphCells.append("circle")
     .attr("cy",0)
     .attr("r",5)
     .attr("fill","none")
-    .attr("stroke","tan")
+    .attr("stroke","black")
     .attr("stroke-width",2)
     .attr("class","graphCircle1")
     ;
 graphCells.append("text")
     .attr("x",0)
     .attr("y",0)
-    .attr("fill","white")
+    .attr("fill","black")
     //.text(getDay)
     ;
 
@@ -114,11 +108,11 @@ graphCells.append("text")
         .attr("class","textAline1")
         .attr("x",100)
         .attr("y",550)
-        .text("I saw the most cats on 2.12 when I walked past a nice grandma")
+        .text("I saw the most cats on 2.11 when I walked past a nice grandma")
         .style("font-size",18)
         .style("width","80")
         .attr("font-family","Roboto")
-        .attr("fill","beige")
+        .attr("fill","black")
         ;
      viz.append("text")
         .attr("class","textAline2")
@@ -128,7 +122,7 @@ graphCells.append("text")
         .style("font-size",18)
         .style("width","80")
         .attr("font-family","Roboto")
-        .attr("fill","beige")
+        .attr("fill","black")
         ;
      viz.append("text")
         .attr("class","textAline3")
@@ -138,7 +132,7 @@ graphCells.append("text")
         .style("font-size",18)
         .style("width","80")
         .attr("font-family","Roboto")
-        .attr("fill","beige")
+        .attr("fill","black")
         ;
      viz.append("text")
         .attr("class","textAline4")
@@ -148,7 +142,7 @@ graphCells.append("text")
         .style("font-size",18)
         .style("width","80")
         .attr("font-family","Roboto")
-        .attr("fill","beige")
+        .attr("fill","black")
         ;
 
 
@@ -183,8 +177,9 @@ graphCells.append("text")
                     return d.radius
                 })
                 .attr("class","whiteCatCirclePack")
-                .attr("stroke","white")
+                .attr("stroke","rgb(132, 192, 214)")
                 .attr("fill","none")
+                .attr("stroke-width",2)
              .merge(u) ///what does this do
                 .attr('cx', function(d) {
                     return d.x
@@ -223,7 +218,8 @@ graphCells.append("text")
                             return d.radius;
                         })
                         .attr("class","blackCatCirclePack")
-                        .attr("stroke","black")
+                        .attr("stroke-width",2)
+                        .attr("stroke","rgb(0, 21, 60)")
                         .attr("fill","none")
                      .merge(u) ///what does this do
                         .attr('cx', function(d) {
@@ -261,8 +257,9 @@ graphCells.append("text")
                     .attr("r",function(d){
                         return d.radius;
                     })
+                    .attr("stroke-width",2)
                     .attr("class","greyCatCirclePack")
-                    .attr("stroke","grey")
+                    .attr("stroke","rgb(158, 153, 240)")
                     .attr("fill","none")
                     .merge(u) ///what does this do
                     .attr('cx', function(d) {
@@ -300,7 +297,8 @@ graphCells.append("text")
                     return d.radius;
                 })
                 .attr("class","orangeCatCirclePack")
-                .attr("stroke","orange")
+                .attr("stroke-width",2)
+                .attr("stroke","rgb( 255, 176, 0)")
                 .attr("fill","none")
                 .merge(u) ///what does this do
                 .attr('cx', function(d) {
@@ -309,6 +307,7 @@ graphCells.append("text")
                 .attr('cy', function(d) {
                     return d.y
                     })
+                
         
                 ;
             }
@@ -339,8 +338,10 @@ graphCells.append("text")
                     return d.radius;
                 })
                 .attr("class","multiColCatCirclePack")
-                .attr("stroke","pink")
+                .attr("stroke-width",2)
+                .attr("stroke","rgb(240, 97, 24)")
                 .attr("fill","none")
+           
                 .merge(u) ///what does this do
                 .attr('cx', function(d) {
                     return d.x
@@ -360,7 +361,7 @@ graphCells.append("text")
             .style("font-size",18)
             .style("width","80")
             .attr("font-family","Roboto")
-            .attr("fill","beige")
+            .attr("fill","black")
             ;
 
             viz.append("text")
@@ -371,7 +372,7 @@ graphCells.append("text")
             .style("font-size",18)
             .style("width","80")
             .attr("font-family","Roboto")
-            .attr("fill","beige")
+            .attr("fill","black")
             ;
    
 }
@@ -380,243 +381,7 @@ graphCells.append("text")
 
 
 
-//////
-//KEY
-
-// viz.append("circle")
-//     .attr("class","keyCircle")
-//     .attr("cx",300)
-//     .attr("cy",750)
-//     .attr("r",40)
-//     .attr("fill","none")
-//     .attr("stroke","white")
-//     .attr("stroke-width",5)
-//     ;
-// viz.append("text")
-//     .attr("x",180)
-//     .attr("y",600)
-//     .text("key")
-//     .attr("fill","beige")
-//     .attr("font-family","Roboto")
 
 
-
-
-///arc function, help from stack overflow d3 reference
-
-
-
-//positioning functions
-
-
-
-
-
-
-////style functions
-
-
-
-function timeDayFill(d){
-    let timeDayVar = d.timeOfDay;
-    // let timeDayVar = catData.select(timeOfDay);
- //  console.log(timeDayVar);
-    if(timeDayVar == "morning"){
-        return "gold";
-    }else if(timeDayVar == "afternoon"){
-        return "steelblue";
-    }else if(timeDayVar == "evening"){
-        return "darkOrange";
-    }else if(timeDayVar == "late night"){
-        return "cornflowerblue";
-    }
-}
-
-function whatIwasDoing(d){
-    let wyd = d.whatIWasDoing;
-    if(wyd == "going out"){
-        return "lightyellow";
-    }else if(wyd == "going home"){
-        return "olive";
-    }else if(wyd == "at a store"){
-        return "maroon";
-    }else if(wyd == "at home"){
-        return "teal";
-    }
-}
-
-function catColor(d){
-    let catColor = d.catColor;
-    //console.log(catColor)
-    
-    if(catColor == "black"){
-        return "black";
-    }else if(catColor == "white"){
-        ///return "palegoldenrod";
-        return "orangered"
-    }else if(catColor == "grey"){
-        return "darkGrey";
-    }else if(catColor == "multi"){
-        return "url(#myGradient)";
-    }else if(catColor == "orange"){
-        return "orange";
-    }
-
-   
-    
-
-   
-}
-
-
-
-
-
-
-let catColorGradient = viz.append("linearGradient")
-    .attr("id","myGradient")
-    .attr("x1","0%")
-    .attr("x2","0%")
-    .attr("y1","0%")
-    .attr("y2","100%")
-    ;
-catColorGradient.append("stop")
-    .attr("offset","0%")
-    .style("stop-color","red")
-    .style("stop-opacity",1)
-    ;
-// catColorGradient.append("stop")
-//     .attr("offset","25%")
-//     .style("stop-color","white")
-//     .style("stop-opacity",1)
-//     ;
-catColorGradient.append("stop")
-    .attr("offset","50%")
-    .style("stop-color","gold")
-    .style("stop-opacity",1)
-    ;
-catColorGradient.append("stop")
-    .attr("offset","100%")
-    .style("stop-color","orange")
-    .style("stop-opacity",0.5)
-;
-
-function catPosX(d){
-    let shiftVal = 10;
-    let catPosition = d.catsPositionInRelationToMe;
-    if( catPosition == "below me"){
-        return 0;
-    }else if(catPosition == "eye level"){
-        return -shiftVal;
-    }else if(catPosition == "above me"){
-        return 0;
-    }else if(catPosition == "through zoom"){
-        return 0;
-    }
-}
-function catPosY(d){
-    let shiftVal = 10;
-    let catPosition = d.catsPositionInRelationToMe;
-    if( catPosition == "below me"){
-        return shiftVal;
-    }else if(catPosition == "eye level"){
-        return 0
-    }else if(catPosition == "above me"){
-        return -shiftVal;
-    }else if(catPosition == "through zoom"){
-        return -shiftVal;
-    }
-}
-
-function dateText(d){
-    let textDate = d.date;
-    return textDate[6]+ "."+ textDate[8]+textDate[9];
-}
-
-function whatCatDoing(d){
-    let wydCat = d.whatTheCatWasDoing;
-    if (wydCat == "running"){
-        //return "url(#catRunning)"
-        return 20;
-    }else if (wydCat == "walking"){
-        return 
-    }else if (wydCat == "sitting"){
-        return 
-    }else if (wydCat == "eating"){
-        return 
-    }
-    else if (wydCat == "sleeping"){
-        return 
-    }
-
-
-}
-
-function whatCatDoingHeadRotate(d){
-    let wydCat = d.whatTheCatWasDoing;
-    if (wydCat == "running"){
-        return "rotate(90)";
-    }else if (wydCat == "walking"){
-        return "rotate(60)";
-    }else if (wydCat == "sitting"){
-        return "rotate(0)";
-    }else if (wydCat == "eating"){
-        return "rotate(180)";
-    }
-    else if (wydCat == "stalking"){
-        return "rotate(225)";
-    }
-
-}
-
-function whatCatDoingTailRotate(d){
-    let wydCat = d.whatTheCatWasDoing;
-    if (wydCat == "running"){
-        return "rotate(270)";
-    }else if (wydCat == "walking"){
-        return "rotate(225)";
-    }else if (wydCat == "sitting"){
-        return "rotate(180)";
-    }else if (wydCat == "eating"){
-        return "rotate(0)";
-    }
-    else if (wydCat == "stalking"){
-       return "rotate(0)";
-    }
-
-
-}
-
-
-
-
-
-
-function catPosRotateStart(d){
-    let catPosition = d.catsPositionInRelationToMe;
-    // if( catPosition == "below me"){
-    //    // return 0;
-    // }else if(catPosition == "eye level"){
-    //     return Math.PI
-    // }else if(catPosition == "above me"){
-    //    // return Math.PI/3;
-    // }else if(catPosition == "through zoom"){
-    //     return Math.PI;
-    // }
-    return 0;
-}
-function catPosRotateEnd(d){
-    let catPosition = d.catsPositionInRelationToMe;
-    // if( catPosition == "below me"){
-    //    // return Math.PI/3;
-    // }else if(catPosition == "eye level"){
-    //     return Math.PI/2
-    // }else if(catPosition == "above me"){
-    //    // return 0;
-    // }else if(catPosition == "through zoom"){
-    //     return -Math.PI;
-    // }
-    return Math.PI/2;
-}
 
 

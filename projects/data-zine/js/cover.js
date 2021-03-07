@@ -7,54 +7,66 @@ let viz = d3.select("#container")
     .attr("id","viz")
     .attr("width",w)
     .attr("height",h)
-    .style("background-color","darkslateblue")
+   // .style("background-color","rgb(217, 214, 210)")
+   .style("background-color","rgb(231, 225, 216)")
     ;
 
-d3.json("data.json").then(gotData);
 
-function gotData(incomingData){
-
-  
-    // viz.selectAll(".tailArcs").data(incomingData).enter()
-    //     .append("path")
-    //      .attr("d", d3.arc()
-    //         .outerRadius(30)
-    //         .innerRadius(20)
-    //         .startAngle(0)
-    //         .endAngle(Math.PI)
-    //         )
-    //     .attr("transform","rotate(80)")
-    //     .attr("transform",randomPos)   
-    //     .attr("fill","white")
-    //     .attr("opacity",0.4)
-    // ;
-
-  
-
-}
 let titleText =  viz.append("text")
-.attr("x",250)
-.attr("y",h/2)
+.attr("x",370)
+.attr("y",600)
 .text("stray cats of shanghai")
-.style("font-family","Sarabun")
-.style("font-size",90)
-.attr("fill","white")
-.attr()
+.style("font-family","Roboto")
+.style("font-size",48)
+.attr("fill","black")
 ;
 
 
 
-function randomPos(d){
-    let x = Math.random()*w;
-    let y = Math.random()*h;
-    return "translate(" + x + ", " + y + ")";
-}
+viz.append("circle")
+        .attr("class","keyCircle1")
+        .attr("cx",600)
+        .attr("cy",400)
+        .attr("r",100)
+        .attr("fill","none")
+        .attr("stroke","black")
+        .attr("stroke-width",2)
+        ;
 
-function randomStartAngle(){
-    return Math.random()*(Math.PI)*2
-}
 
-function randomEndAngle(){
-   
-    return Math.random()*(Math.PI)*2
-}
+     viz.append("circle")
+        .attr("class","keyCircle2")
+        .attr("cx",600)
+        .attr("cy",400)
+        .attr("r",80)
+        .attr("fill","none")
+        .attr("stroke","black")
+        .attr("stroke-width",2)
+        .style("stroke-dasharray",(3,8))
+        ;
+
+        viz.append("circle")
+        .attr("class","keyCircle3")
+        .attr("cx",600)
+        .attr("cy",275)
+        .attr("r",60)
+        .attr("fill","none")
+        .attr("stroke","black")
+        .attr("stroke-width",2)
+        ;
+
+        viz.append("path")
+        .attr("class","keyOuterCircle1")
+        .attr("d",d3.arc()
+            .outerRadius(130)
+            .innerRadius(130)
+            .startAngle(Math.PI)
+            .endAngle(4*Math.PI/3)
+        )
+        .attr("fill","none")
+        .attr("stroke-width",2)
+        .attr("stroke","black")
+        .attr("transform","translate(600,400)")
+        
+        ;
+
