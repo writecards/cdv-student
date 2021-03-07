@@ -1,7 +1,11 @@
-Stray Cats of Shanghai - by Shengli Wen
+ # Stray Cats of Shanghai - by Shengli Wen #
 
-Website Link (https://writecards.github.io/cdv-student/projects/data-zine/cover.html)
-[attach screenshots here]
+[Project Website Link](https://writecards.github.io/cdv-student/projects/data-zine/cover.html)
+
+![screenshot of cover page](https://github.com/writecards/cdv-student/blob/main/projects/data-zine/dazaZineCover.png?raw=true)
+![screenshot of middle spread](https://github.com/writecards/cdv-student/blob/main/projects/data-zine/dataZineMiddleSpread.png?raw=true)
+![screenshot of back page](https://github.com/writecards/cdv-student/blob/main/projects/data-zine/dataZineBack.png?raw=true)
+
 
 1. What data did you choose to collect?
 -My data zine is a visualization of the stray cats I saw from late Januaray - end of February. 
