@@ -48,38 +48,17 @@ let yScale = d3.scaleLinear().domain(yDomain).range([0, h-padding*2])
 let graphGroup = viz.append("g").classed("graphGroup", true);
 /// this selection gives us access to enter, exit, and update group arrays in the object 
 // basically gives us things we can control  in the visualization
-let elementsForPage = graphGroup.selectAll(".datapoint").data(data);
-//console.log("D3's assessment of whats needed on the page:", elementsForPage);
 
-let enteringElements = elementsForPage.enter();
-let exitingElements = elementsForPage.exit();
 
-console.log("enteringElements", enteringElements);
-console.log("exitingElements", exitingElements);
+function assignkeys(d) {
+    return d.key;
+}
 
-let enteringDataGroups = enteringElements.append("g").classed("datapoint",true);
 
-enteringDataGroups.attr("transform",function(d,i){
-    return "translate(" + xScale(d.key) + "," + (h-padding) + ")"
-});
+updateNew()
 
-enteringDataGroups.append("rect")
-    .attr("width",function(){
-        return xScale.bandwidth();
-    })
-    .attr("height", function(d){
-        return yScale(d.value);
-    })
-    .attr("y",function(d,i){
-        return -yScale(d.value);
-    })
-    .attr("fill","black")
-    ;
-
-function add(){
-    addDatapoints(1);
-    console.log("new data", data);
-
+    
+function updateNew(){
     //updates the list of keys
     allNames = data.map(function(d){
         return d.key;
@@ -89,8 +68,10 @@ function add(){
     //updating the x axis
     xAxis = d3.axisBottom(xScale);
     xAxis.tickFormat(d=>{return data.filter(dd=>dd.key==d)[0].name;}); // we adjust this because it uses the new data
-    xAxisGroup.transition().call(xAxis).selectAll("text").attr("font-size", 18);
-
+   
+    xAxisGroup.transition().delay(800).call(xAxis).selectAll("text");
+    xAxisGroup.selectAll("text").attr("font-size", 24).attr("y", 9);
+    xAxisGroup.selectAll("line").remove();
     //updating the y axis
 
     yMax = d3.max(data, function(d){
@@ -99,289 +80,100 @@ function add(){
     yDomain = [0, yMax + yMax * 0.1];
     yScale.domain(yDomain);
 
-    elementsForPage = graphGroup.selectAll(".datapoint").data(data);
-    console.log(elementsForPage);
+    elementsForPage = graphGroup.selectAll(".datapoint").data(data,assignkeys);
+    // console.log(elementsForPage);
     // don't use let bc variables already declared earlier
     enteringElements = elementsForPage.enter();
     exitingElements = elementsForPage.exit();
 
-    elementsForPage.transition().duration(800).attr("transform", function(d, i){
-        return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
-      });
+    // 1. deal with exiting
+    exitingElements.select("rect")
+        .transition()
+        .duration(800)  
+        .attr("height", function(d, i){
+            return 0
+        })
+    ;
+    exitingElements.transition().delay(800).remove()
 
-      // only updating things that are impacted by the new data
-      // 'updating' = write the code again so that it can run again with the updated dataset
+    // 2. dealing with updates
+    elementsForPage.transition().delay(800).duration(800).attr("transform", function(d, i){
+        return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
+        });
+
+        // only updating things that are impacted by the new data
+        // 'updating' = write the code again so that it can run again with the updated dataset
 
     elementsForPage.select("rect")
-      .transition()
-      .delay(100)
-      .duration(1000)
-      .attr("fill", "#F27294")
-      .attr("width", function(){
-          return xScale.bandwidth();
-      })
-      .attr("y",function(d,i){
-          return -yScale(d.value);
-      })
-      .attr("height", function(d, i){
-          return yScale(d.value);
-      })
-
-    let incomingDataGroups = enteringElements.append("g")
-        .classed("datapoint",true)
-        ;
-    incomingDataGroups.attr("transform",function(d, i){
-        return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
-    });
-    incomingDataGroups.append("rect")
-        .attr("y", function(d,i){
-        return 0;
-      })
-        .attr("height", function(d, i){
-        return 0;
-      })
-        .attr("width", function(){
-        return xScale.bandwidth();
-      })
-        .attr("fill", "#F27294")
         .transition()
-        .delay(600)
-        .duration(500)
-        .attr("y", function(d,i){
-        return -yScale(d.value);
-      })
+        .delay(800)
+        .duration(800)
+        // .attr("fill", "#F27294")
+        .attr("width", function(){
+            return xScale.bandwidth();
+        })
+        .attr("y",function(d,i){
+            return -yScale(d.value);
+        })
         .attr("height", function(d, i){
-        return yScale(d.value);
-      })
-        .attr("fill", "#F27294")
-        ;
+            return yScale(d.value);
+        })
+
+    // 3. deal with incoming elements
+
+    let enteringDataGroups = enteringElements.append("g").classed("datapoint",true);
+
+    enteringDataGroups.attr("transform",function(d,i){
+        return "translate(" + xScale(d.key) + "," + (h-padding) + ")"
+    });
+
+    enteringDataGroups.append("rect")
+        .attr("width",function(){
+            return xScale.bandwidth();
+        })
+        .attr("height", function(d){
+            return 0;
+        })
+        .attr("y",function(d,i){
+            return -yScale(d.value);
+        })
+        .attr("fill","black")
+        .transition().delay(1600)
+        .attr("height", function(d){
+            return yScale(d.value);
+        })
+    ;
+
 }
 
-document.getElementById("buttonA").addEventListener("click",add);
+function add(){
+    addDatapoints(1);
+    updateNew()
+}
+document.getElementById("buttonA").addEventListener("click", add);
 
 function remove(){
     removeDatapoints(1);
-     //updates the list of keys
-     allNames = data.map(function(d){
-        return d.key;
-    });
+    updateNew()
+}
+document.getElementById("buttonB").addEventListener("click", remove);
 
-    xScale.domain(allNames);
-    //updating the x axis
-    xAxis = d3.axisBottom(xScale);
-    xAxis.tickFormat(d=>{return data.filter(dd=>dd.key==d)[0].name;}); // we adjust this because it uses the new data
-    xAxisGroup.transition().call(xAxis).selectAll("text").attr("font-size", 18);
+function removeAndAdd(){
+    removeAndAddDatapoints(1,1);
+    updateNew()
+}
+document.getElementById("buttonC").addEventListener("click", removeAndAdd);
 
-    //updating the y axis
-
-    yMax = d3.max(data, function(d){
-        return d.value
-    });
-
-    yDomain = [0, yMax + yMax * 0.1];
-    yScale.domain(yDomain);
-
-    elementsForPage = graphGroup.selectAll(".datapoint").data(data);
-    console.log(elementsForPage);
-    // don't use let bc variables already declared earlier
-    enteringElements = elementsForPage.enter();
-    exitingElements = elementsForPage.exit();
-    //need to fix my remove function
-
-    // let leavingDataGroups = exitingElements
-    //   .append("g")
-    //   .classed("datapoint", true)
-    // ;
-
-    exitingElements.transition().duration(100).ease(d3.easeLinear).attr("height","0")
-    .remove();
-
-    exitingElements.select(".ticks").remove();
-
-    elementsForPage.transition().duration(800).attr("transform", function(d, i){
-      return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
-    });
-
-    // only updating things that are impacted by the new data
-    // 'updating' = write the code again so that it can run again with the updated dataset
-
-  elementsForPage.select("rect")
-    .transition()
-    .delay(500)
-    .duration(1000)
-    .attr("fill","#04ADBF")
-    .attr("width", function(){
-        return xScale.bandwidth();
-    })
-    .attr("y",function(d,i){
-        return -yScale(d.value);
-    })
-    .attr("height", function(d, i){
-        return yScale(d.value);
-    })
-
-  }
-  document.getElementById("buttonB").addEventListener("click", remove);
-  
-  function removeAndAdd(){
-    removeAndAddDatapoints(1,1); //idk how to approach this one
-    add(1);
-    remove(1);
-    
-    
-    
-    
-  }
-  document.getElementById("buttonC").addEventListener("click", removeAndAdd);
-  
-  function sortData(){
+function sortData(){
     sortDatapoints();
-    allNames = data.map(function(d){
-      return d.key;
-  });
+    updateNew()
+}
+document.getElementById("buttonD").addEventListener("click", sortData);
 
-  xScale.domain(allNames);
-  //updating the x axis
-  xAxis = d3.axisBottom(xScale);
-  xAxis.tickFormat(d=>{return data.filter(dd=>dd.key==d)[0].name;}); // we adjust this because it uses the new data
-  xAxisGroup.transition().call(xAxis).selectAll("text").attr("font-size", 18);
-
-  //updating the y axis
-
-  yMax = d3.max(data, function(d){
-      return d.value
-  });
-
-  yDomain = [0, yMax + yMax * 0.1];
-  yScale.domain(yDomain);
-
-  elementsForPage = graphGroup.selectAll(".datapoint").data(data);
-  console.log(elementsForPage);
-  // don't use let bc variables already declared earlier
-  enteringElements = elementsForPage.enter();
-  exitingElements = elementsForPage.exit();
-
-  elementsForPage.transition().duration(800).attr("transform", function(d, i){
-    return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
-  });
-  elementsForPage.select("rect")
-  .transition()
-  .delay(100)
-  .duration(1000)
-  .attr("fill","#aa6af3")
-  .attr("width", function(){
-      return xScale.bandwidth();
-  })
-  .attr("y",function(d,i){
-      return -yScale(d.value);
-  })
-  .attr("height", function(d, i){
-      return yScale(d.value);
-  })
-
-  }
-  document.getElementById("buttonD").addEventListener("click", sortData);
-  
-  function shuffleData(){
+function shuffleData(){
     shuffleDatapoints();
-    allNames = data.map(function(d){
-      return d.key;
-  });
-
-  xScale.domain(allNames);
-  //updating the x axis
-  xAxis = d3.axisBottom(xScale);
-  xAxis.tickFormat(d=>{return data.filter(dd=>dd.key==d)[0].name;}); // we adjust this because it uses the new data
-  xAxisGroup.transition().call(xAxis).selectAll("text").attr("font-size", 18);
-
-  //updating the y axis
-
-  yMax = d3.max(data, function(d){
-      return d.value
-  });
-
-  yDomain = [0, yMax + yMax * 0.1];
-  yScale.domain(yDomain);
-
-  elementsForPage = graphGroup.selectAll(".datapoint").data(data);
-  console.log(elementsForPage);
-  // don't use let bc variables already declared earlier
-  enteringElements = elementsForPage.enter();
-  exitingElements = elementsForPage.exit();
-
-  elementsForPage.transition().duration(800).attr("transform", function(d, i){
-    return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
-  });
-  elementsForPage.select("rect")
-  .transition()
-  .delay(100)
-  
-  .duration(1000)
-  .attr("fill","#F24C27")
-  
-  .attr("width", function(){
-      return xScale.bandwidth();
-  })
-  .attr("y",function(d,i){
-      return -yScale(d.value);
-  })
-  .attr("height", function(d, i){
-      return yScale(d.value);
-  })
-  }
-  document.getElementById("buttonE").addEventListener("click", shuffleData);
-
-  function getRandomColor(){
-      let r = Math.random()*255;
-      let g = Math.random()*255;
-      let b = Math.random()*255;
-      return "rgb(" + r + "," + g + "," + b + ")";
-  }
-
-  function randomButton(){
-    allNames = data.map(function(d){
-        return d.key;
-    });
-  
-    xScale.domain(allNames);
-    //updating the x axis
-    xAxis = d3.axisBottom(xScale);
-    xAxis.tickFormat(d=>{return data.filter(dd=>dd.key==d)[0].name;}); // we adjust this because it uses the new data
-    xAxisGroup.transition().call(xAxis).selectAll("text").attr("font-size", 18);
-  
-    //updating the y axis
-  
-    yMax = d3.max(data, function(d){
-        return d.value
-    });
-  
-    yDomain = [0, yMax + yMax * 0.1];
-    yScale.domain(yDomain);
-  
-    elementsForPage = graphGroup.selectAll(".datapoint").data(data);
-    console.log(elementsForPage);
-    // don't use let bc variables already declared earlier
-    enteringElements = elementsForPage.enter();
-    exitingElements = elementsForPage.exit();
-  
-    elementsForPage.transition().duration(800).attr("transform", function(d, i){
-      return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
-    });
-    elementsForPage.select("rect")
-    .transition()
-    .delay(100)
-    .duration(1000)
-    .attr("fill",getRandomColor)
-    .attr("width", function(){
-        return xScale.bandwidth();
-    })
-    .attr("y",function(d,i){
-        return -yScale(d.value);
-    })
-    .attr("height", function(d, i){
-        return yScale(d.value);
-    })
-  }
-  document.getElementById("buttonF").addEventListener("click", randomButton);
+    updateNew()
+}
+document.getElementById("buttonE").addEventListener("click", sortData);
 
 
