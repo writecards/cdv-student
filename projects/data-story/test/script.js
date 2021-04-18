@@ -1,4 +1,4 @@
-d3.csv("data.csv").then(gotData);
+d3.csv("California_Fire_Incidents.csv").then(gotData);
 
 let svgWidth = window.innerWidth;
 let svgHeight = window.innerHeight;
@@ -23,7 +23,7 @@ function filterFunction(d){
 function gotData(incomingData){
     
     let transformedData = transformData(incomingData);
-    console.log(transformedData);
+    console.log(incomingData);
 
     function transformData(dataToTransform){
         let newData = dataToTransform.filter(filterFunction);

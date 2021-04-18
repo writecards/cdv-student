@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../responsive environments/9.2-NodeRED-MQTT-Unity"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "cdv-student2"
+	}
+}
