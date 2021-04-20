@@ -1,0 +1,18 @@
+.button{
+    height:50px;
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+    margin: 25px;
+    width:50px;
+    background-color: black;
+    
+  }
+  .button p{
+    font-family: sans-serif;
+    pointer-events: none;
+    color: white;
+    font-weight: bold;
+  }
+
+ 

@@ -98,13 +98,6 @@ function gotData(incomingData){
           .attr("stroke-linecap","round")
           .attr("class","line")
 
-   
-     
- 
-                
-
-
-              
               
     graphGroup.selectAll('.line').data(dataFromUSA).transition().ease(d3.easeElastic).duration(1600)
       .attr("d", lineMaker)
