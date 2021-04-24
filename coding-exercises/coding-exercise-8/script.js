@@ -50,10 +50,16 @@ let mapData = d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m
 
             .attr("transform","translate(0,100)")
             ;
+
+   
+
+        
     });
 
+    
 
     let menu = d3.select("#projection-menu").on("change",change);
+
     
     menu.selectAll("option").data(projections).enter().append("option")
         .text(function(d){
