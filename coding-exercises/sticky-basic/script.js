@@ -16,7 +16,6 @@ let xScale = d3.scaleLinear().domain([0,100]).range([0,w]);
 let yScale = d3.scaleLinear().domain([0,100]).range([0,h]);
 let rScale = d3.scaleLinear().domain([0,100]).range([10,h/2]);
 
-
 let graphGroup = viz.append("g").attr("class","graphGroup");
 
 graphGroup.selectAll("datapoint").data(mydata).enter()
@@ -39,7 +38,6 @@ graphGroup.selectAll("datapoint").data(mydata).enter()
 
 	function updateGraph(){
 		let elements = graphGroup.selectAll("datapoint").data(mydata);
-
 	}
 
 

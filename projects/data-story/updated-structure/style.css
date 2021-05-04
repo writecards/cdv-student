@@ -1,0 +1,94 @@
+.stickyDiv {
+    height: 100vh;
+    width: 80%;
+    left:10%;
+    top: 0;
+    z-index: -1;
+    position: sticky;
+    /* ps you can even make this div a flexbox to position elements inside it */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .introScroll div{
+    width: 30vw;
+    padding: 10px;
+    background-color: lightyellow;
+    margin-bottom: 300px;
+    position: relative;
+    left:10%;
+  }
+  
+  .introScroll div:last-child{
+    margin-bottom: 0px;
+    left: 33%;
+  }
+  
+ 
+  
+  
+  /* everything below is just styling for this particular example
+  it can all be changed
+  be experimental
+  be playful
+  be wild
+  :)  */
+
+  
+  .header{
+    height: 30vh;
+    font-family: 'Smythe';
+    font-size: 72px;
+    position: relative;
+    left: 10%;
+  }
+  
+  #myname{
+      position: relative;
+      left:30%;
+      font-family: 'roboto';
+      bottom: 40%;
+      font-size: 48px;
+  }
+
+  .intro{
+    background-color: rgb(238, 66, 209);
+  }
+  
+  .lightpink{
+    background-color: lightpink;
+  }
+  .context{
+    background-color: lightgreen;
+    height: 100vh;
+  }
+  .lightyellow{
+    padding: 10px;
+    background-color: lightyellow;
+    margin-bottom: 300px;
+    position: relative;
+    left:10%;
+  }
+  .special{
+    height: 30vh
+  }
+
+  .orange{
+    background-color:orange;
+  }
+
+  .ending{
+    background-color:blueviolet;
+  }
+  
+  .contextScroll p{
+   margin-bottom: 200px;
+   width: 30vw;
+   left:33%;
+  }
+  .scrollingContent p:last-child{
+    margin-bottom: 0px;
+  }
+
+  
