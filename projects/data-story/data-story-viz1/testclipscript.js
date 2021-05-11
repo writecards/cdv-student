@@ -12,15 +12,8 @@ let mapviz = d3.select("#viz1-container")
     .attr("width",svgWidth)
     .attr("height",svgHeight)
     .attr("id","mapviz")
-    
+    //.style("background-color","midnightblue")
     ;
-
-    mapviz.append("text")
-      .text("Active Wildfires 2013-2020")
-      .attr("y", svgHeight-100)
-      .attr("x", 180)
-      .attr("fill","black")
-      .attr("font-size", 16)
     
 
 // let clipPath = mapviz.html(`
@@ -68,11 +61,11 @@ function gotCaliMapData(data){
         let fireData = d3.csv("California_Fire_Incidents.csv").then(gotFireData);
             function gotFireData(incomingData){
               //this gotFireData function is inside the caliMap function because it uses the cali map projection to map the cordinates for where the fires are burning.
-              let transformedData = transformMapData(incomingData);
+              let transformedData = transformData(incomingData);
 
-                    function transformMapData(dataToTransform){
-                        let newmapData = dataToTransform.filter(filterFunction);
-                        return newmapData;
+                    function transformData(dataToTransform){
+                        let newData = dataToTransform.filter(filterFunction);
+                        return newData;
                     }
 
                 
@@ -111,12 +104,12 @@ function gotCaliMapData(data){
                       .append("g")
                       .attr("class", "fireGroup")
                       ;
-    //hide pls
+    //hiding
                   // enteringElements.append("circle")
                   //       .attr("r",3)
                   //       .attr("fill","red")
-                  //       .attr("cx", 0)
-                  //       .attr("cy", 0)
+                  //       .attr("cx",0)
+                  //       .attr("cy",0)
                   //       .attr("transform", function(d){
                   //             return "translate(" + projection([d.Longitude, d.Latitude]) + ")";
                   //           })
@@ -156,7 +149,7 @@ function gotCaliMapData(data){
             clipLayer.selectAll("path").data(polygons).enter()
                     .append("path")
                     .attr("d", polygonToPath)
-                    .attr("stroke", "black")
+                   // .attr("stroke", "black")
                     .transition()
                     .attr("fill", color)
                     

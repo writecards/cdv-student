@@ -1,5 +1,5 @@
 let svgWidth = window.innerWidth;
-let svgHeight = window.innerHeight*5;
+let svgHeight = window.innerHeight;
 
 
 let viz = d3.select("#container")
@@ -7,20 +7,17 @@ let viz = d3.select("#container")
     .attr("width",svgWidth)
     .attr("height",svgHeight)
     .attr("id","viz")
-    .style("background-color","linen")
+    //.style("background-color","linen")
     ;
 
-// let backgroundimage = viz.append("image")
-//     .attr("xlink:href", "assets/redwoods2.jpeg")
-//     .attr('transform','scale(0.9)')
-//     .attr('opacity',0.8)
+
 
 viz.append("text")
     .text("California")
     .attr("x", 100)
     .attr("y", 140)
     .attr("fill","black")
-    .style("font-family","Smythe")
+    .style("font-family","roboto")
     .style("font-size",150);
 
     viz.append("text")
@@ -28,7 +25,7 @@ viz.append("text")
     .attr("x", 100)
     .attr("y", 260)
     .attr("fill","black")
-    .style("font-family","Smythe")
+    .style("font-family","roboto")
     .style("font-size",150);
 
     viz.append("text")
@@ -36,8 +33,16 @@ viz.append("text")
     .attr("x", 100)
     .attr("y", 380)
     .attr("fill","black")
-    .style("font-family","Smythe")
+    .style("font-family","roboto")
     .style("font-size",150);
+
+    viz.append("text")
+    .text("by shengli")
+    .attr("x", 600)
+    .attr("y", 380)
+    .attr("fill","black")
+    .style("font-family","roboto")
+    .style("font-size",64);
 
     viz.append("line")
         .attr("x1",0)
@@ -51,7 +56,7 @@ viz.append("text")
         .attr("x1",svgWidth/2)
         .attr("x2",svgWidth/2)
         .attr("y1",0)
-        .attr("y2",850)
+        .attr("y2",1150)
         .attr("stroke","black")
         .style("stroke-dasharray",(3,8))
 
@@ -97,42 +102,42 @@ viz.append("text")
         .attr("x",800)
         .attr("y",300)
         .style("font-family","Roboto")
-        .text("this is introductory line of text line 1/6, this is introductory line of text line 1/6.")
+        .text("On September 9th, 2020, I woke up to an eerie dark orange sky and falling ashes.")
         
     viz.append("text")
         .attr("class","intro-text2")
         .attr("x",800)
         .attr("y",320)
         .style("font-family","Roboto")
-        .text("this is introductory line of text line 2/6, this is introductory line of text line 2/6.")
+        .text("This was the result of a record-setting fire season in California, USA.")
 
     viz.append("text")
         .attr("class","intro-text3")
         .attr("x",800)
         .attr("y",340)
         .style("font-family","Roboto")
-        .text("this is introductory line of text line 3/6, this is introductory line of text line 3/6.")
+        .text("Forest fires are far from new, though in recent years they have become increasingly destructive and severe.")
     
     viz.append("text")
         .attr("class","intro-text4")
         .attr("x",800)
         .attr("y",360)
         .style("font-family","Roboto")
-        .text("this is introductory line of text line 4/6, this is introductory line of text line 4/6.")
+        .text("This project aims to visualize wildfires in California from 2013-2020,")
     
     viz.append("text")
         .attr("class","intro-text")
         .attr("x",800)
         .attr("y",380)
         .style("font-family","Roboto")
-        .text("this is introductory line of text line 5/6, this is introductory line of text line 5/6.")
+        .text("focusing specifically on where and when they tend to occur, in order to")
    
     viz.append("text")
         .attr("class","intro-text")
         .attr("x",800)
         .attr("y",400)
         .style("font-family","Roboto")
-        .text("this is introductory line of text line 6/6, this is introductory line of text line 6/6.")
+        .text("raise awareness on the effects of human-induced climate change on the West Coast.")
 
 
 // 

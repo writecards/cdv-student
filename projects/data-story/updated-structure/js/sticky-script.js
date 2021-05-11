@@ -1,5 +1,5 @@
-let w = 1300;
-let h = 300;
+let w = window.innerWidth;
+let h = 480;
 
 
 
@@ -7,96 +7,68 @@ let viz = d3.select("#vizContainer").append("svg")
 	.attr("width", w)
 	.attr("height", h)
 	.attr("class", "viz")
-	.style("background-color", "blanchedalmond")
+	//.style("background-color", "blanchedalmond")
 ;
 
-viz.append("text")
-    .attr('class','titletext')
-    .text("California Wildfire Trends")
-    .attr("x", 180)
-    .attr("y", 100)
-    .attr("fill","black")
-    .style("font-family","Smythe")
-    .style("font-size",72);
+// let firepic = viz.append('image')
+// 	.attr('xlink:href', 'assets/wildfire-1280.jpeg')
+// 	.attr('transform','scale(0.5)')
+// 	.attr('x', 650)
+// 	.attr('y', 0)
+
+// viz.append("text")
+//     .attr('class','titletext')
+//     .text("California Wildfire Trends")
+//     .attr("x", 355)
+//     .attr("y", 420)
+//     .attr("fill","black")
+//     .style("font-family","Smythe")
+//     .style("font-size",72);
+
+// viz.append("text")
+//     .attr('class','name')
+//     .text("shengli wen")
+//     .attr("x", 585)
+//     .attr("y", 455)
+//     .attr("fill","black")
+//     .style("font-family","Roboto")
+//     .style("font-size",24);
+let textX = 500;
 
 viz.append("text")
-    .attr('class','name')
-    .text("a nicely designed header section")
-    .attr("x", 300)
-    .attr("y", 200)
+    .text("California")
+    .attr("x", textX)
+    .attr("y", 140)
     .attr("fill","black")
-    .style("font-family","Roboto")
-    .style("font-size",48);
+    .style("font-family","roboto")
+    .style("font-size",150);
 
+    viz.append("text")
+    .text("Wildfire")
+    .attr("x", textX)
+    .attr("y", 260)
+    .attr("fill","black")
+    .style("font-family","roboto")
+    .style("font-size",150);
 
+    viz.append("text")
+    .text("Trends")
+    .attr("x", textX)
+    .attr("y", 380)
+    .attr("fill","black")
+    .style("font-family","roboto")
+    .style("font-size",150);
 
+    viz.append("text")
+    .text("by shengli")
+    .attr("x", 980)
+    .attr("y", 380)
+    .attr("fill","black")
+    .style("font-family","roboto")
+    .style("font-size",64);
 
-let xScale = d3.scaleLinear().domain([0, 100]).range([0, w]);
-let yScale = d3.scaleLinear().domain([0, 100]).range([0, h]);
-let rScale = d3.scaleLinear().domain([0, 100]).range([10, h/2]);
-
-
-let graphGroup = viz.append("g").attr("class", "graphGroup");
-
-function updateGraph(){
-
-	let elements = graphGroup.selectAll(".datapoint").data(myData);
-
-	let enteringElements = elements.enter();
-	let exitingElements = elements.exit();
-
-	// enteringElements.append("circle")
-	// 	.attr("class", "datapoint")
-	// 	.attr("cx", function(d, i){
-	// 		let x = d[0]
-	// 		return xScale(x)
-	// 	})
-	// 	.attr("cy", function(d, i){
-	// 		let y = d[1]
-	// 		return yScale(y)
-	// 	})
-	// 	.attr("r", function(d, i){
-	// 		let r = d[2]
-	// 		return rScale(r)
-	// 	})
-	// 	.attr("fill", function(d,i){
-	// 		return d[3]
-	// 	})
-	;
-
-	elements
-		.transition()
-		.duration(700)
-		.attr("cx", function(d, i){
-			let x = d[0]
-			return xScale(x)
-		})
-		.attr("cy", function(d, i){
-			let y = d[1]
-			return yScale(y)
-		})
-		.attr("r", function(d, i){
-			let r = d[2]
-			return rScale(r)
-		})
-		.attr("fill", function(d,i){
-			return d[3]
-		})
-	;
-
-}
-
-
-//updateGraph();
-
-
-
-d3.select("#buttonL").on("click", function(){
-	console.log("LEFT")
-	myData[0][0] = 0
-	updateGraph();
-
-})
+  
+	
 
 
 
@@ -106,22 +78,6 @@ d3.select("#buttonL").on("click", function(){
 
 
 
-// in the javascript
-// the only ingirdient we need
-// is a way to determine when exactly
-// an element passes a certain point
-// e.g. when a scrolling text reaches the middle
-// of the page you might want to trigger
-// a transition in your vvisualization
-
-// we could code such a mechanism outselves, but
-// on https://pudding.cool/process/scrollytelling-sticky/
-// i found various light-weight libraries that do just that.
-// one I tested is this: https://github.com/russellgoldenberg/enter-view
-// you need to include it in the html:
-//
-//
-// and after that you can use it just like this:
 
 
 

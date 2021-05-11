@@ -5,9 +5,10 @@
     <title>California Wildfires</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+    
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Smythe&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
 <script src="https://unpkg.com/d3-delaunay@5"></script>
 <script src="https://unpkg.com/d3-geo-voronoi@1.5"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -21,114 +22,93 @@
     <body>
 
     
-      <!-- <section>
-  
-        <div class="stickyDiv intro">
-          <div id="vizContainer">
-  
-          </div>
-        </div>
-  
-  
-        <div class="introScroll">
-          <div>
-            <p class=""> On September 9th, 2020, I woke up to an eerie dark orange sky and falling ashes. This was the result of a record-setting fire season in California, USA. 
-              Forest fires are far from new, though in recent years they have become increasingly destructive and severe. 
-            </p>
-          </div>
-          <div class = "triggerViz1">
-            <p class=""> Let's take a look at some recent wildfire data: *insert viz 1*
-             </p>
-          </div>
-          <div>
-            <p class=""> How did we get here? In order to understand recent fire patterns, 
-              some knowledge of California’s climate, population growth, and history of fire management is essential.  </p>
-          </div>
-         
-  
-      </section> -->
+     
 
       <section>
-  
        
           <div id="vizContainer">
           </div>
           <div>
-            <p class=""> On September 9th, 2020, I woke up to an eerie dark orange sky and falling ashes. This was the result of a record-setting fire season in California, USA. 
-              Forest fires are far from new, though in recent years they have become increasingly destructive and severe. 
-            </p>
+            
           </div>
       </section>
 
 
     <section>
-      <div class="stickyDiv intro">
-        </div>
+      <!-- <div class="stickyDiv intro">
+        </div> -->
         <div class="introScroll">
           
-
-          <div class = "triggerViz1">
-            <p class=""> Let's take a look at some recent wildfire data: *insert viz 1*
-             </p>
+          <div>
+            <p>On September 9th, 2020, I woke up to an eerie dark orange sky and falling ashes. 
+              This was the result of a record-setting fire season in California, USA. 
+              Forest fires are far from new, though in recent years they have become increasingly destructive and severe. 
+              This project aims to visualize wildfires in California from 2013-2021, focusing specifically on where and when they tend to occur, 
+              in order to raise awareness on the effects of human-induced climate change on the West Coast. Let's take a look at some recent wildfire data: 
+            </p>
           </div>
+          <div id = "dumbwaytomakeaspacer">
+            <p> Five of the twenty largest wildfires in California history were part of the 2020 wildfire season.</p>
+          </div>
+          
+
+          <div id = "viz2-container">
+
+          </div>
+
+          
+        
+        <div id = "viz-2-tooltip"></div>
+
+        <div id = "dumbwaytomakeaspacer2">
+          <p> The August Complex fire is known as the first "gigafire", burning over 1 million acres, equivilent to the entiry of Shanghai burning 1.5 times. By the end of 2020, 9,639 fires had burned 4,397,809 acres, more than 4% of the state's roughly 100 million acres of land. 
+           This makes 2020 the largest wildfire season recorded in California's modern history (according to the California Department of Forestry and Fire Protection.) How did we get here? In order to understand recent fire patterns, 
+           some knowledge of California’s climate, population growth, and history of fire management is essential.
+          
+          </p>
+        </div>
 
           <div id = "viz1-container">
           </div>
 
           <div>
-            <p class=""> How did we get here? In order to understand recent fire patterns, 
-              some knowledge of California’s climate, population growth, and history of fire management is essential.  </p>
+            <p class=""> California gets its rain in the fall and winter, and is extremely hot and dry during the summer months, making the vegetation extremely susceptible to wildfires during this time. Moreover, human-driven climate change is another reason California’s wildfires are so severe: warmer temperatures and dry fuels create the perfect conditions for wildfires to spark (Pierre-Louis, Schwartz). With a rapid growth in population density, people are moving from urban areas directly into areas at risk of wildfires. This means more human-built infrastructures are getting caught in fires, which is yet another reason why fires are becoming more destructive (Vox). 
+             <br><br><br> In terms of fire management, for thousands of years Native Americans intentionally used controlled fires as a way to prevent raging wildfires from happening during the summers (Hessburg). By the 1800s, European settler colonialism was in full swing, and the increase in livestock grazing and development of roads and railroads all created barriers that interrupted the spread of wildfires. In 1910, a massive fire known as “Big Burn” scorched through western U.S.. From this point forward, wildfires became a public enemy, and this fire shaped the way people treated wildfires for the next 100 years. The U.S. Forest Service received more government funding and became highly skilled in putting out fires, effectively suppressing fires from happening as they normally would. As a result of fire suppression and an increase in logging, California’s forests grew denser and small trees grew closer together, creating more trees than the landscape can support. In sum, a century without any major fires, warmer weather due to climate change, and more houses in flammable regions are all reasons why wildfires have become drastically destructive in the last two decades (Hessburg). 
+                </p>
           </div>
+
+          <!-- <div id = "context-container">
+
+          </div> -->
+
+          
+    
+        <h4 id = "heatmap-title"> Calfire Data on wildfires that burned more than 300 acres, between 2013-2021</h4>
+        <div id = "heatmap-tooltip">
+    
+        </div>
+        <div id="heatmap-container">
+        </div>
+        <div id="heatmap-key-container">
+        </div>
+
+        <div id = "conclusion">
+          <p> This is a lot to take in. At the time of writing this, I don't have much to say as for a call to action,
+            my only hope is that this visualization leads you to look into this topic more and think about the broder implications
+            of climate trends like this. This page was created initially an the final project for the IMA course titled "Critical Data and Visualization" taught
+            by Leon Eckert. Thanks to Leon for an thought-provoking semester. You can read more about this project here.
+          </p>
+        </div>
+        
     
       </section>
 
-
-
-    <section>
-
-      <div class="stickyDiv context">
-        <h2>*~.*~.^! contextual info !^.~*.~*</h2>
-      </div>
-
-
-      <div class="contextScroll">
-        <p class="lightyellow">This is the content that 'floats' by.</p>
-        <p class="lightyellow">climate change para</p>
-        <p class="lightyellow">fire management para</p>
-        <p class="lightyellow"> pics ?????</p>
-      </div>
-
-    </section>
-
-    <section>
-
-      <div class="stickyDiv orange">
-        <h2>*~.*~.^! VIZ 2 !^.~*.~*</h2>
-      </div>
-
-
-      <div class="scrollingContent">
-        
-      </div>
-
-    </section>
-
-
-    <section>
-      <div class="stickyDiv ending">
-        <h2>*~.*~.^! THE END !^.~*.~*</h2>
-      </div>
-
-
-      <div class="scrollingContent">
-        
-      </div>
-    </section>
-    
-   
-
-    <!-- <script type="text/javascript" src="script.js"></script> -->
+      <script type="text/javascript" src="js/heatmap.js"></script>
     <script type="text/javascript" src="js/sticky-script.js"></script>
     <script type="text/javascript" src="js/mapscript.js"></script>
+    <script type="text/javascript" src="js/context.js"></script>
+    <script type="text/javascript" src="js/viz2script.js"></script>
+    
+   
   </body>
 </html>

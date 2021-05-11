@@ -1,0 +1,202 @@
+[
+    {
+        "timestamp": "2021-05-03T14:03:25.375Z",
+        "fireName": "Tunnel - Oakland Hills",
+        "cause": "Rekindle",
+        "date": "October 1991",
+        "county": "Alameda",
+        "acres": 1600,
+        "deaths": 25,
+        "structures": 2900
+    },
+    {
+        "timestamp": "2021-05-03T14:16:38.618Z",
+        "fireName": "Jones",
+        "cause": "Undetermined",
+        "date": "October 1999",
+        "county": "Shasta",
+        "acres": 26200,
+        "deaths": 1,
+        "structures": 954
+    },
+    {
+        "timestamp": "2021-05-03T14:16:01.519Z",
+        "fireName": "Old",
+        "cause": "Human related",
+        "date": "October 2003",
+        "county": "San Bernardino",
+        "acres": 91281,
+        "deaths": 6,
+        "structures": 1003
+    },
+    {
+        "timestamp": "2021-05-03T14:04:27.563Z",
+        "fireName": "Cedar",
+        "cause": "Human related",
+        "date": "October 2003",
+        "county": "San Diego",
+        "acres": 273246,
+        "deaths": 15,
+        "structures": 2820
+    },
+    {
+        "timestamp": "2021-05-03T14:06:54.207Z",
+        "fireName": "Witch",
+        "cause": "Powerlines",
+        "date": "October 2007",
+        "county": "San Diego",
+        "acres": 197990,
+        "deaths": 2,
+        "structures": 1650
+    },
+    {
+        "timestamp": "2021-05-03T14:18:58.213Z",
+        "fireName": "Butte",
+        "cause": "Powerlines",
+        "date": "September 2015",
+        "county": "Amador and Calaveras",
+        "acres": 70868,
+        "deaths": 2,
+        "structures": 921
+    },
+    {
+        "timestamp": "2021-05-03T14:06:12.085Z",
+        "fireName": "Valley",
+        "cause": "Electrical",
+        "date": "September 2015",
+        "county": "Lake, Napa and Sonoma",
+        "acres": 76067,
+        "deaths": 4,
+        "structures": 1955
+    },
+    {
+        "timestamp": "2021-05-03T14:20:29.389Z",
+        "fireName": "Atlas",
+        "cause": "Powerline",
+        "date": "October 2017",
+        "county": "Napa and Solano",
+        "acres": 51624,
+        "deaths": 6,
+        "structures": 783
+    },
+    {
+        "timestamp": "2021-05-03T14:02:18.754Z",
+        "fireName": "Tubbs",
+        "cause": "Electrical",
+        "date": "October 2017",
+        "county": "Napa & Sonoma",
+        "acres": 36807,
+        "deaths": 22,
+        "structures": 5636
+    },
+    {
+        "timestamp": "2021-05-03T14:12:04.424Z",
+        "fireName": "Nuns",
+        "cause": "Powerline",
+        "date": "December 2017",
+        "county": "Sonoma",
+        "acres": 54382,
+        "deaths": 3,
+        "structures": 1355
+    },
+    {
+        "timestamp": "2021-05-03T14:14:05.011Z",
+        "fireName": "Thomas",
+        "cause": "Powerline",
+        "date": "December 2017",
+        "county": "Ventura and Santa Barbara",
+        "acres": 281293,
+        "deaths": 2,
+        "structures": 1063
+    },
+    {
+        "timestamp": "2021-05-03T14:08:33.004Z",
+        "fireName": "Carr",
+        "cause": "Under investigation",
+        "date": "July 2018",
+        "county": "Shasta County, Trinity",
+        "acres": 229651,
+        "deaths": 8,
+        "structures": 1614
+    },
+    {
+        "timestamp": "2021-05-03T14:07:44.629Z",
+        "fireName": "Woosley",
+        "cause": "Under investigation",
+        "date": "November 2018",
+        "county": "Ventura",
+        "acres": 96949,
+        "deaths": 3,
+        "structures": 1643
+    },
+    {
+        "timestamp": "2021-05-03T14:01:13.486Z",
+        "fireName": "Camp Fire",
+        "cause": "Powerlines",
+        "date": "November 2018",
+        "county": "Butte",
+        "acres": 153336,
+        "deaths": 85,
+        "structures": 18804
+    },
+    {
+        "timestamp": "2021-05-03T14:05:19.154Z",
+        "fireName": "North Complex",
+        "cause": "Under investigation",
+        "date": "August 2020",
+        "county": "Butte, Plumas, and Yuba",
+        "acres": 318935,
+        "deaths": 15,
+        "structures": 2352
+    },
+    {
+        "timestamp": "2021-05-03T14:11:19.935Z",
+        "fireName": "CZU Lightning Complex",
+        "cause": "Lightning",
+        "date": "August 2020",
+        "county": "Santa Cruz, San Mateo",
+        "acres": 86509,
+        "deaths": 1,
+        "structures": 1490
+    },
+    {
+        "timestamp": "2021-05-03T14:15:08.165Z",
+        "fireName": "LNU Lightning Complex",
+        "cause": "Under investigation",
+        "date": "August 2020",
+        "county": "Lake, Napa, Sonoma, Yolo, and Solano",
+        "acres": 323220,
+        "deaths": 6,
+        "structures": 1491
+    },
+    {
+        "timestamp": "2021-05-03T14:17:55.693Z",
+        "fireName": "August Complex",
+        "cause": "Under investigation",
+        "date": "August 2020",
+        "county": "Mendocino, Humboldt, Trinity, Tehama, Glenn, Lake, and Colusa",
+        "acres": 1032648,
+        "deaths": 1,
+        "structures": 935
+    },
+    {
+        "timestamp": "2021-05-03T14:09:24.105Z",
+        "fireName": "Glass Fire",
+        "cause": "Under investigation",
+        "date": "September 2020",
+        "county": "Napa and Sonoma",
+        "acres": 67484,
+        "deaths": 0,
+        "structures": 1520
+    },
+    {
+        "timestamp": "2021-05-03T14:19:49.986Z",
+        "fireName": "Creek Fire",
+        "cause": "Under investigation",
+        "date": "September 2020",
+        "county": "Fresno and Madera",
+        "acres": 379895,
+        "deaths": 0,
+        "structures": 856
+    }
+]

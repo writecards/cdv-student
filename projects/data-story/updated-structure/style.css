@@ -1,3 +1,8 @@
+body{
+  background: rgb(250,235,215);
+background: linear-gradient(180deg, rgba(250,235,215,1) 26%, rgba(255,255,224,1) 80%);
+font-family: Roboto;
+}
 .stickyDiv {
     height: 100vh;
     width: 80%;
@@ -14,18 +19,73 @@
   .introScroll div{
     width: 30vw;
     padding: 10px;
-    background-color: lightyellow;
-    margin-bottom: 300px;
+    
+    margin-bottom: 100px;
     position: relative;
-    left:10%;
+    left:33%;
+    font-size: larger;
   }
   
-  .introScroll div:last-child{
+  /* .introScroll div:last-child{
     margin-bottom: 0px;
-    left: 33%;
-  }
+    left: 15%;
+  } */
+  #tooltip{
+    visibility: hidden;
+    height: auto;
+    width: auto;
+    margin-bottom: 0px;
+    font-size: 48px;
+}
+
+
+
+#heatmap-title{
+  font-size: 48px;
+  position: relative;
+  left: 5%;
   
+  margin-bottom: 10px;
+}
+#heatmap-tooltip{
+  font-size: 36px;
+  margin-bottom: 0px;
+  left: 43%;
+}
+#heatmap-container{
+  left: 25%;
+  margin-bottom: 0px;
+}
+.heatmapdatagroup:hover{
+    opacity: 0.1;
+}
+
+#heatmap-key-container{
+  left: 55%;
+  padding-top: 0%;
+  margin-top: 0%;
+
+
+}
+  #viz2-container{
+    left: 23%;
+  }
+
  
+  
+  #viz-2-tooltip{
+    visibility: hidden;
+    position: relative;
+    font-size: 64px;
+    padding: none;
+    margin-top: -10px;
+    bottom: 20%;
+    left:38%;
+    margin-bottom: 50px;
+}
+
+ 
+
   
   
   /* everything below is just styling for this particular example

@@ -1,4 +1,3 @@
-// d3.csv("California_Fire_Incidents.csv").then(gotData);
 let contextWidth = 400;
 let contextHeight = 400;
 
@@ -7,7 +6,7 @@ let contextviz = d3.select("#context-container")
     .attr("width",contextWidth)
     .attr("height",contextHeight)
     .attr("id","viz")
-    .style("background-color","midnightblue")
+   // .style("background-color","midnightblue")
     ;
 
 nodeGroup = contextviz.append("g").attr("class", "nodes");

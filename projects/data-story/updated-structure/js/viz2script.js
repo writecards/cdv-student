@@ -1,4 +1,4 @@
-let viz2width = 900;
+let viz2width = 950;
 let viz2height = 400;
 
 let xpadding = 100;
@@ -105,7 +105,7 @@ function gotData(incomingData){
 
           
         let fireName = dataGroups.append("text")
-            .attr("x",7)
+            .attr("x",0)
             .attr("y", 15)
             .text( d => d.fireName)
             .style("font-family","roboto")
@@ -128,9 +128,3 @@ function gotData(incomingData){
 
         
 }
-
-
-
-                       
-
-
