@@ -41,9 +41,10 @@ font-family: Roboto;
 
 
 #heatmap-title{
-  font-size: 48px;
+  font-size: 36px;
   position: relative;
-  left: 5%;
+  font-weight: 900;
+  left: 15%;
   
   margin-bottom: 10px;
 }
@@ -82,6 +83,14 @@ font-family: Roboto;
     bottom: 20%;
     left:38%;
     margin-bottom: 50px;
+}
+
+#dumbwaytomakeaspacer{
+  font-size: 36px;
+  position: relative;
+  font-weight: 900;
+  width: 60%;
+  left: 22%;
 }
 
  
@@ -152,3 +161,23 @@ font-family: Roboto;
   }
 
   
+
+  #firemanagepic{
+    position: relative;
+    right: 200px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  #headingwildfire{
+    position: relative;
+    left:13%;
+    height: 30%;
+
+  }
+
+  #mywildfirepic{
+    position: relative;
+    height: 400px;
+
+  }

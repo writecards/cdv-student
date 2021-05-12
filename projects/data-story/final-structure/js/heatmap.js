@@ -1,3 +1,5 @@
+//help from tutorial https://www.youtube.com/watch?v=6uM_wLOayYI
+
 let heatmapWidth = 800;
 let heatmapHeight = 600;
 
